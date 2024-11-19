@@ -1,18 +1,10 @@
+import func as f
 
-N = int(input("Unesi broj elemenata niza: "))
-lista = []
-rezultat = []
-for i in range(N):
-    lista.append(int(input("Unesi element niza: ")))
+raspored_lifta = f.process_demands(f.remove_invalid(f.read_demands()))
 
-min_el = min(lista)
+str_raspored_lifta = ""
+for i in raspored_lifta:
+    str_raspored_lifta += str(i)
+    str_raspored_lifta += " "
 
-for i in range(len(lista)-2):
-    trojka = lista[i:i+3]
-
-    if min_el in trojka:
-        rezultat.append(trojka)
-
-print(rezultat)
-
-
+print(str_raspored_lifta[:-1])
