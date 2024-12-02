@@ -1,0 +1,13 @@
+Napisati program na programskom jeziku Python koji vrši određenu obradu nad nizom brojeva uz pomoć drugog niza koji sadrži trojke celih brojeva. Obrada zadatog niza brojeva podrazumeva dodavanje i oduzimanje vrednosti paru njegovih elemenata za zadati ceo broj. Indeksi elemenata kojima se dodaje ili oduzima vrednost, kao i broj kojim se vrši dodavanje ili oduzimanje definisani su drugim nizom. Elementi drugog niza su trojke celih brojeva, gde prva dva elementa trojke predstavljaju indekse elemenata prvog niza, dok treći element trojke predstavlja vrednost koja se dodaje ili oduzima elementima prvog niza. Program najpre učita niz brojeva odvojenih razmakom u jednom redu, a zatim i elemente drugog niza, po jedna trojka celih brojeva odvojenih razmakom u jednom redu. Unos drugog niza se zaustavlja kada korisnik unese prazan red. Nakon učitavanja se vrednosti parova elemenata prvog niza uvećavaju ili smanjuju za odgovarajući broj po redosledu kojim su zadate trojke u drugom nizu. Prilikom dodavanja ili oduzimanja vrednosti svakog para elemenata, ispisati prvi niz. Na kraju proveriti da li je obrađeni niz sortiran po neopadajućem redosledu. Smatrati da je unos podataka korektan.
+
+Napisati funkciju readNumbers() koja učitava niz brojeva odvojenih razmakom zadatog u jednom redu. Povratna vrednost je formirani niz brojeva.
+
+Napisati funkciju readThrees()koja učitava trojke celih brojeva, svaka trojka odvojena razmakom u posebnom redu. Unos niza se zaustavlja kada korisnik unese prazan red. Povratna vrednost je formirani niz trojki celih brojeva (npr: [[1, 2, 10], [0, 5, 20]]).
+
+Napisati funkciju incOrDec(ind1, ind2, arr, value) koja menja vrednosti elemenata niza arr čiji su indeksi zadati parametrima ind1 i ind2. Većem od dva elementa se oduzima zadata vrednost value, dok se manjem dodaje ista ta vrednost. Ako elementi imaju istu vrednost, na oba se dodaje vrednost.
+
+Napisati funkciju printArray(arr) koja ispisuje elemente niza arr odvojene zarezom i razmakom u jednom redu (na primer: 1, 2, 10).
+
+Napisati funkciju isSorted(arr) koja proverava da li je zadati niz brojeva arr sortiran po neopadajućem redosledu.
+
+Korišćenjem prethodno realizovanih funkcija napisati glavni program koji učita niz brojeva i niz trojki, uveća i smanjuje vrednosti svim parovima elemenata definisanih drugim nizom pri čemu se ispisuje obrađivani niz nakon svakog obrađenog para, a na kraju cele obrade proveri da li je obrađeni niz sortiran u neopadajućem redosledu. Ukoliko je niz brojeva na kraju obrade sortiran, napisati SORTIRAN, odnosno NIJE SORTIRAN
