@@ -1,6 +1,12 @@
-from func import *
+"""
+Zbog malo cudnog nacina na koji
+radi zadatak prilikom pokretanja programa
+u main.py dolazi do nastanka "Circular Dependecies",
+tj da bi func.py radio kako treba potreban mu je main.py
+a main.py je potreban func.py tako da nastaje petlja,
+python ovo prepoznaje i izbacuje gresku, moguce je popraviti
+ali mi se nije dalo :)
+"""
 
-tekst = read_paper("paper.txt")
-reformat = write_paper(tekst, "reformatted.txt")
-ponavljanja = count_occurrences("reformatted.txt", "occurrences.txt")
+
 

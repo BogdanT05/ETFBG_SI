@@ -1,5 +1,6 @@
 from func import *
 
-best_prices = find_best_prices('ulaz.txt')
-for keys,values in best_prices.items():
-    print('{}-{}'.format(keys, values))
+tekst = read_paper("paper.txt")
+reformat = write_paper(tekst, "reformatted.txt")
+ponavljanja = count_occurrences("reformatted.txt", "occurrences.txt")
+
