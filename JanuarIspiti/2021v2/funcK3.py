@@ -57,20 +57,27 @@ def remove_invalid(transactions):
 
     return transactions
 
-def remove_atm(transactions):
-    transactions_no_atm = []
+def remove_foreign(transactions):
+    transactions_rem = []
     for transaction in transactions:
-        if len(transaction[0]) != 0 and len(transaction[1]) != 0:
-            transactions_no_atm.append(transaction)
+        if len(transaction[0]) > 0 and len(transaction[1]) > 0:
+            if transaction[0][0] == transaction[1][0]:
+                transactions_rem.append(transaction)
+        else:
+            transactions_rem.append(transaction)
 
-    return transactions_no_atm
+    return transactions_rem
 
-def count_internal_transfers(transactions):
+def domestic_internal_transfers(transactions):
     counted_trans = {}
     countries = []
     for transaction in transactions:
-        if transaction[0][0] not in countries:
-            countries.append(transaction[0][0])
+        if len(transaction[0]) > 0:
+            if transaction[0][0] not in countries:
+                countries.append(transaction[0][0])
+        else:
+            if transaction[1][0] not in countries:
+                countries.append(transaction[1][0])
 
     for country in countries:
         counted_trans[country] = []
@@ -78,29 +85,41 @@ def count_internal_transfers(transactions):
     for key in counted_trans:
         inner_dict = {}
         banks = []
-        counter = 0
         for transaction in transactions:
-            if transaction[0][0] == key:
-                if transaction[0][2] not in banks:
-                    banks.append(transaction[0][2])
-            if transaction[1][0] == key:
-                if transaction[1][2] not in banks:
-                    banks.append(transaction[1][2])
+            if len(transaction[0]) > 0:
+                if transaction[0][0] == key:
+                    if transaction[0][2] not in banks:
+                        banks.append(transaction[0][2])
+            if len(transaction[1]) > 0:
+                if transaction[1][0] == key:
+                    if transaction[1][2] not in banks:
+                        banks.append(transaction[1][2])
 
         for bank in banks:
-            counter = 0
+            value = 0
             for transaction in transactions:
-                if transaction[0][0] == key or transaction[1][0] == key:
-                    if transaction[0][2] == bank and transaction[1][2] == bank:
-                        counter += 1
+                if len(transaction[0]) > 0 and len(transaction[1]) > 0:
+                    if transaction[0][0] == key or transaction[1][0] == key:
+                        if transaction[0][2] == bank and transaction[1][2] == bank:
+                            value = value + transaction[2]
+                else:
+                    if len(transaction[0]) == 0:
+                        if transaction[1][0] == key:
+                            if transaction[1][2] == bank:
+                                value = value + transaction[2]
 
-            inner_dict[bank] = counter
+                    if len(transaction[1]) == 0:
+                        if transaction[0][0] == key:
+                            if transaction[0][2] == bank:
+                                value = value + transaction[2]
+
+            inner_dict[bank] = value
 
         counted_trans[key] = inner_dict
 
     return counted_trans
 
-def most_internal_transfers(transfers):
+def most_internal_transfers_sum(transfers):
     most_internal = {}
     for keys, values in transfers.items():
         hightest = max(values.values())
@@ -109,6 +128,3 @@ def most_internal_transfers(transfers):
                 most_internal[keys] = key
 
     return most_internal
-
-
-
