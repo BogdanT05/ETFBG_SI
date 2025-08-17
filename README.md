@@ -4,4 +4,4 @@
 
 Trenutno samo python zadaci, nema zadatak iz pC zato sto je ocajan programski jezik, a bice zadataka iz ostalih programskih jezika u skladu sa tim kako budem napredovao na fakultetu :)
 
-Bogdan Todorović
+Bogdan Todorović.
