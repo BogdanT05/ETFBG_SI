@@ -1,0 +1,11 @@
+Napisati program na programskom jeziku Python koji vrši analizu popusta artikala u prodavnicama za vreme Black Friday akcije. Program najpre treba da sa standardnog ulaza učita imena artikala i njihove cene pre akcije. Prvi red standardnog ulaza sadrži imena artikala odvojena znakom zarez, dok drugi red ulaza sadrži informacije o cenama odvojene jednim blanko znakom (prvo ime artikla odgovara prvoj ceni, drugo ime artikla odgovara drugoj ceni, itd.). Program zatim u zasebnim redovima čita parove ime artikla-broj sve dok ne pročita prazan red. Parovi predstavljaju ime i vrednost artikala koji su na popustu. Za svaki par program treba da izračuna procentualni iznos popusta u odnosu na originalnu cenu artikla i ispiše artikl sa najvećim popustom. Program realizovati prema sledećim stavkama:
+
+Napisati funkciju read_names() koja učitava listu imena artikla odvojenih zarezom zadatih u jednom redu. Povratna vrednost je formirana lista imena.
+
+Napisati funkciju read_prices() koja učitava listu cena artikla odvojenih blanko znakom zadatih u jednom redu. Povratna vrednost je formirana lista cena.
+
+Napisati funkciju read_pairs() koja učitava parove tekst-broj, svaki par odvojen je znakom - i dat u zasebnom redu. Povratna vrednost je formirani niz parova (na primer: [['pegla', 6329], ['mis', 1599]]).
+
+Napisati funkciju calc_discount (names, old_prices, article) koja pronalazi staru cenu artikla article (par ime i cena sa popustom) i vraća procentualni iznos popusta artikla u odnosu na originalnu cenu (realan broj).
+
+Korišćenjem prethodno realizovane funkcije napisati funkciju print_biggest_discount (names, old_prices, articles) koja ispisuje artikl sa nejvećim procentualnim popustom, kao i popust u procentima zaokružen na 2 decimale.
