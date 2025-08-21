@@ -1,0 +1,5 @@
+h0v2h3v0h1v3h0v2h0v1v1h3
+h2v2h2v2h3h1v0h2v0h3v1h2v2
+v3h0v3v1h0v2h0v0h0v2h3
+v3h3v3h3h1v2h3v0h2h1v2h3v2h3h1
+h3v0h3v2h3v1h2v2v1
