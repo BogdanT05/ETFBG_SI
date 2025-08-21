@@ -1,2 +1,0 @@
-## Ispitni rok u januaru zadnjih 5 godina
-### Vecina zadataka sa treceg kolokvijuma se ponavlja i u sklopu ispita, razlika je gradivo drugog kolokvijuma koje predstavlja prvi dio ispita i svi zadaci se razlikuju, jedini zadaci gradiva K3 koji se razlikuju od K3 iz januara je iz godine 2021, samim tim folderi 2021v1 i 2022v2 ce sadrzati uradjena oba dijela gradiva dok ce za ostale ispite biti uradjen samo prvi deo gradiva tj gradivo sa K2.

@@ -1,8 +1,0 @@
-
-Napisati program na programskom jeziku Python koji vrši šifrovanje niza cifara korišćenjem algoritma zamene. Algoritam radi tako što menja svake dve cifre (parove cifara) sa proizvoljnim brojem cifara, na osnovu tabele zamena. Program najpre treba da sa standardnog ulaza učita listu zamena u zasebnim redovima. Potom treba da čita sekvence cifara, izvrši njihovo šifrovanje i ispiše rezultat. Program realizovati prema sledećim stavkama:
-
-Napisati funkciju readSubtitutions( ) koja učitava listu zamena, svaku u zasebnom redu. Jedna zamena je predstavljena parom cifara iz originalne sekvence i sekvencom proizvoljnog broja cifara kojima se dati par menja. Par cifara je od sekvence odvojen zarezom, dok su cifre međusobno odvojene blanko znacima. Povratna vrednost je formirana tabela zamena koja je predstavljena kao lista listi u kojoj svaka podlista predstavlja jednu zamenu.
-
-Napisati funkciju encrypt(sequence, subtitutions) koja na osnovu tabele zamena predstavljene listom substitutions vrši šifrovanje liste cifara sequence tako što svaki par cifara iz liste sequence menja na osnovu odgovarajuće zamene. Ukoliko par nije prisutan u tabeli zamena, zameniti ga sa dve nule. Ukoliko originalna sekvenca ima neparan broj elemenata, poslednju cifru ne treba šifrovati. Povratna vrednost funkcije je šifrovana lista cifara.
-
-Korišćenjem prethodno realizovanih funkcija napisati glavni program koji najpre učita listu zamena, a potom čita sekvence cifara sa standardnog ulaza, šifruje ih i ispisuje rezultate. Ovaj postupak se ponavlja sve dok se ne pročita prazan red.

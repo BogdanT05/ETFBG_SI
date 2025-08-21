@@ -1,7 +1,0 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis bibendum {13} risus.
-Fusce dolor elit, pharetra ac diam a, consequat {11-14,2-5} volutpat leo.
-Nulla semper tristique diam {fig}, vitae {3,5-7} vestibulum nisi pretium quis.
-Sed eu vestibulum tellus, ac {11-13} sapien. Mauris at orci nulla.
-Integer elementum {5,6} dolor a sem gravida imperdiet.
-Curabitur euismod {2,3,4} at enim a aliquet.
-Praesent ut efficitur {4-7} sapien.

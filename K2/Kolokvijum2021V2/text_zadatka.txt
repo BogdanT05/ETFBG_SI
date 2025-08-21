@@ -1,7 +1,0 @@
-Napisati program na programskom jeziku Python koji vrši šifrovanje niza cifara korišćenjem algoritma transpozicije. Algoritam radi tako što menja redosled cifara u originalnoj sekvenci na osnovu zadatog ključa. Program najpre treba da sa standardnog ulaza učita ključ (lista celih brojeva koja predstavlja novi raspored, odnosno nove pozicije elemenata iz originalne sekvence). Potom treba da čita sekvence cifara, izvrši njihovo šifrovanje i ispiše rezultat. Program realizovati prema sledećim stavkama:
-
-Napisati funkciju readKey( ) koja učitava listu celih brojeva koja predstavlja ključ. Celi brojevi su međusobno odvojeni zarezom.Povratna vrednost je učitana lista.
-
-Napisati funkciju transpose(sequence, key) na osnovu ključa key vrši transpoziciju podnizova originalne liste sequence. Elementi svakog podniza se premeštaju na nove pozicije unutar tog podniza u skladu sa redosledom navedenim u ključu key. Dužina podniza odgovara dužini ključa. Višak elemanata ne treba šifrovati. Funkcija nema povratnu vrednost, već menja listu sequence.
-
-Korišćenjem prethodno realizovanih funkcija napisati glavni program koji najpre čita ključ, a potom čita sekvence cifara sa standardnog ulaza, šifruje ih i ispisuje rezultate. Ovaj postupak se ponavlja sve dok se ne pročita prazan red.
