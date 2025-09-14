@@ -1,0 +1,21 @@
+Petar Petrovic|1 1300 SRB
+Jovan Jovanovic|1 1509 SRB
+Maja|1 1105 SRB
+Petar|1 1514 SRB
+Petar|2 1313 GRC
+Jovan|2 1511 GRC
+Maja|2 1100 GRC
+Petar Petrovic stariji|2 1500 GRC
+Petar|3 1320 SRB
+Jovan|3 1600 SRB
+Maja|3 900 SRB
+Petar|3 1530 SRB
+Petar|4 1313 GRC
+Jovan|4 1511 GRC
+Maja|4 1100 GRC
+Petar Petrovic|4 1900 GRC
+Maja|5 4100 GRC
+Petar Petrovic|5 1700 GRC
+Petar|6 1313 GRC
+Jovan|6 2511 GRC
+Maja|6 2100 GRC
