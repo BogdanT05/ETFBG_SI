@@ -47,6 +47,8 @@ int string_to_int(char *word, char **map, int rows) {
     int value_int = 0;
     int counter = 0;
 
+    // idemo od zadnjeg slova zato sto ce to biti najmanja vrednost
+    // mnozimo sa stepenom 10 da bi ispravno dodali za svako slovo
     for (int j = strlen(word); j >= 0; j--) {
         value_int = value_int + char_to_digit(word[j], map, rows) * pow(10, counter-1);
         counter++;
@@ -63,6 +65,7 @@ char *read_line() {
     if ((c = getchar()) == '\n') return "";
     ungetc(c, stdin);
 
+    //citamo do zadnjeg \n
     while (1) {
         c = getchar();
         if (c == '\n') break;
@@ -87,6 +90,7 @@ int main() {
     char **map = load_map(&rows);
     int value12 = 0, value3 = 0;
 
+    // sabiramo value12 i proveravamo sa value3 da li treba da ispisemo resetujemo word u svakoj iteraciji
     while (i < 3) {
         char *word = read_line();
 
