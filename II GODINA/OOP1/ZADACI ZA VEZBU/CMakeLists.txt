@@ -25,3 +25,10 @@ add_executable(Zadatak4
         "ZADATAK 4/cuboid.cpp"
         "ZADATAK 4/main.cpp"
 )
+
+add_executable(Zadatak5
+        "ZADATAK 5/main.cpp"
+        "ZADATAK 5/jmbg.cpp"
+        "ZADATAK 5/person.h"
+        "ZADATAK 5/directory.cpp"
+)
