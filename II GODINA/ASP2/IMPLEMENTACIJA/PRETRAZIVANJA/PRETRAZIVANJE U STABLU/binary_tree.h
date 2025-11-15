@@ -1,0 +1,55 @@
+//
+// Created by bgdnt on 11/11/2025.
+//
+
+#ifndef PRETRAZIVANJE_U_LISTI_BINARY_TREE_H
+#define PRETRAZIVANJE_U_LISTI_BINARY_TREE_H
+
+
+class Binary_tree {
+public:
+    struct Node {
+        int data;
+        int key;
+        Node *left;
+        Node *right;
+
+        Node(int data = 0, int key = 0, Node *left = nullptr, Node *right = nullptr) {
+            this->data = data;
+            this->key = key;
+            this->left = left;
+            this->right = right;
+        }
+    };
+
+    Binary_tree();
+    Binary_tree(const Binary_tree &tree);
+    Binary_tree(Binary_tree &&tree) noexcept;
+    ~Binary_tree();
+
+    void write_tree() const;
+    bool add_node(int key, int data);
+    bool delete_node(int key);
+    Node* bst_search(int key) const;
+    void inorder() const;
+    void preorder() const;
+    void postorder() const;
+    void level_order() const;
+
+    Node* find_predecessor(int key) const;
+    Node* find_successor(int key) const;
+    Node* find_max() const;
+    Node* find_min() const;
+
+    int get_height() const;
+    int get_width() const;
+
+private:
+    Node *root;
+    static void destroy(const Node *node);
+    static Node* clone(const Node *node);
+
+};
+
+
+#endif //PRETRAZIVANJE_U_LISTI_BINARY_TREE_H
