@@ -2,22 +2,6 @@
 #include "binary_tree.h"
 
 void print_menu() {
-    // std::cout << "\n1. Dodaj cvor u stablo \n"
-    //              "2. Obrisi cvor iz stabla \n"
-    //              "3. Ispisi stablo \n"
-    //              "4. Inorder obilazak \n"
-    //              "5. Preorder obilazak \n"
-    //              "6. Postorder obilazak \n"
-    //              "7. Level order obilazak \n"
-    //              "8. Nadji prethodnika cvora \n"
-    //              "9. Nadji sledbenika cvora \n"
-    //              "10. Nadji maksimum u stablu \n"
-    //              "11. Nadji minimum u stablu \n"
-    //              "12. Nadji visinu stabla \n"
-    //              "13. Nadji sirinu stabla \n"
-    //              "14. Kopiraj stablo \n"
-    //              "15. Pronadji cvor u stablu \n"
-    //              "0. Izlaz \n";
     std::cout <<
     "+------------------------------------------------+------------------------------------------------+\n"
     "|  1. Dodaj cvor u stablo                         |  9.  Nadji sledbenika cvora                   |\n"

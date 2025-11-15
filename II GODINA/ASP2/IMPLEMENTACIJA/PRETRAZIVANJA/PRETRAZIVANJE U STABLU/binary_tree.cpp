@@ -1,6 +1,46 @@
 #include "binary_tree.h"
 #include <iostream>
 #include <stdexcept>
+#include <cmath>
+
+auto Binary_tree::pop_stack(Node *stack[256], int &stack_pointer) {
+    auto pop = [&stack, &stack_pointer]()->Node* {
+        if (stack_pointer == 0) return nullptr;
+        Node *node = stack[--stack_pointer];
+        return node;
+    };
+    return pop;
+}
+
+auto Binary_tree::push_stack(Node *stack[256], int &stack_pointer) {
+    auto push = [&stack, &stack_pointer](Node *node) {
+        if (stack_pointer == 256) throw std::overflow_error("stack full");
+        stack[stack_pointer++] = node;
+    };
+    return push;
+}
+
+auto Binary_tree::pop_queue(const int &capacity, int &first, int &last, int &length, Node *queue[capacity]) {
+    auto pop = [&]() -> Node* {
+        if (length == 0) throw std::out_of_range("Red je prazan!");
+        length--;
+        Node* node = queue[first];
+        first = (first + 1) % capacity;
+        return node;
+    };
+    return pop;
+}
+
+auto Binary_tree::push_queue(const int &capacity, int &first, int &last, int &length, Node *queue[capacity]){
+    auto push = [&](Node *node) {
+        if (length == capacity) throw std::out_of_range("Red je pun!");
+        length++;
+        queue[last] = node;
+        last = (last + 1) % capacity;
+    };
+    return push;
+}
+
 
 Binary_tree::Binary_tree() {
     root = nullptr;
@@ -43,31 +83,19 @@ void Binary_tree::destroy(const Node *node) {
     delete node;
 }
 
-void Binary_tree::write_tree() const {
-    int capacity = 256;
+void Binary_tree::write_tree() const  {
+    int capacity = 257;
     int first = 0;
     int last = 0;
     int length = 0;
     Node *queue[capacity];
 
-    auto push = [&](Node *node) {
-        if (length == capacity) throw std::out_of_range("Red je pun!");
-        length++;
-        queue[last] = node;
-        last = (last + 1) % capacity;
-    };
-
-    auto pop = [&]()->Node* {
-        if (length == 0) throw std::out_of_range("Red je prazan!");
-        length--;
-        Node* data = queue[first];
-        first = (first + 1) % capacity;
-        return data;
-    };
+    auto pop = pop_queue(capacity, first, last, length, queue);
+    auto push = push_queue(capacity, first, last, length, queue);
 
     // Ispis (stackoverflow inspiracija :))
     // Uz pomoc level ordera i odg pocetnih parametara ispis
-    int initial_width = 128, current_width = 0, node_width = 0;
+    int initial_width = int(pow(2, get_height()+2)), current_width = 0, node_width = 0;
     if (root != nullptr) push(root);
     while (length != 0) {
         // initial width udaljenost izmedju pocetka i prvog cvora
@@ -76,7 +104,7 @@ void Binary_tree::write_tree() const {
         // not_null broj ne nula elemenata
         int current_length = length;
         initial_width = initial_width/2;
-        current_width = initial_width * 2 - 1;
+        current_width = initial_width * 2-1;
         int not_null = 0;
 
         for (int i = 0; i < current_length; i++) {
@@ -208,16 +236,8 @@ void Binary_tree::inorder() const {
     Node* stack[256];
     int stack_pointer = 0;
 
-    auto pop = [&stack, &stack_pointer]()->Node* {
-        if (stack_pointer == 0) return nullptr;
-        Node *node = stack[--stack_pointer];
-        return node;
-    };
-
-    auto push = [&stack, &stack_pointer](Node* node) {
-        if (stack_pointer == 256) throw std::overflow_error("stack full");
-        stack[stack_pointer++] = node;
-    };
+    auto pop = pop_stack(stack, stack_pointer);
+    auto push = push_stack(stack, stack_pointer);
 
     Node *current = root;
     // inorder obilazak levo koren desno
@@ -243,16 +263,8 @@ void Binary_tree::preorder() const {
     Node* stack[256];
     int stack_pointer = 0;
 
-    auto pop = [&stack, &stack_pointer]()->Node* {
-        if (stack_pointer == 0) return nullptr;
-        Node *node = stack[--stack_pointer];
-        return node;
-    };
-
-    auto push = [&stack, &stack_pointer](Node* node) {
-        if (stack_pointer == 256) throw std::overflow_error("stack full");
-        stack[stack_pointer++] = node;
-    };
+    auto pop = pop_stack(stack, stack_pointer);
+    auto push = push_stack(stack, stack_pointer);
 
     if (root != nullptr) push(root);
 
@@ -273,16 +285,8 @@ void Binary_tree::postorder() const {
     int stack_pointer = 0;
     Node* stack[256];
 
-    auto pop = [&stack, &stack_pointer]()->Node* {
-        if (stack_pointer == 0) return nullptr;
-        Node *node = stack[--stack_pointer];
-        return node;
-    };
-
-    auto push = [&stack, &stack_pointer](Node* node) {
-        if (stack_pointer == 256) throw std::overflow_error("stack full");
-        stack[stack_pointer++] = node;
-    };
+    auto pop = pop_stack(stack, stack_pointer);
+    auto push = push_stack(stack, stack_pointer);
 
     Node *current = root;
     Node *last_visited = nullptr;
@@ -320,20 +324,8 @@ void Binary_tree::level_order() const {
     int length = 0;
     Node *queue[capacity];
 
-    auto push = [&](Node *node) {
-        if (length == capacity) throw std::out_of_range("Red je pun!");
-        length++;
-        queue[last] = node;
-        last = (last + 1) % capacity;
-    };
-
-    auto pop = [&]()->Node* {
-        if (length == 0) throw std::out_of_range("Red je prazan!");
-        length--;
-        Node* data = queue[first];
-        first = (first + 1) % capacity;
-        return data;
-    };
+    auto pop = pop_queue(capacity, first, last, length, queue);
+    auto push = push_queue(capacity, first, last, length, queue);
 
     if (root != nullptr) push(root);
     // dodajemo elemente na stek ako nisu nullptr i tako ih obradjujemo
@@ -438,20 +430,8 @@ int Binary_tree::get_height() const{
     int length = 0;
     Node *queue[capacity];
 
-    auto push = [&](Node *node) {
-        if (length == capacity) throw std::out_of_range("Red je pun!");
-        length++;
-        queue[last] = node;
-        last = (last + 1) % capacity;
-    };
-
-    auto pop = [&]()->Node* {
-        if (length == 0) throw std::out_of_range("Red je prazan!");
-        length--;
-        Node* data = queue[first];
-        first = (first + 1) % capacity;
-        return data;
-    };
+    auto pop = pop_queue(capacity, first, last, length, queue);
+    auto push = push_queue(capacity, first, last, length, queue);
 
     int height = -1; // pocetna visina ako je stablo prazno
     Node *sentinel = nullptr;
@@ -485,20 +465,8 @@ int Binary_tree::get_width() const {
     int length = 0;
     Node *queue[capacity];
 
-    auto push = [&](Node *node) {
-        if (length == capacity) throw std::out_of_range("Red je pun!");
-        length++;
-        queue[last] = node;
-        last = (last + 1) % capacity;
-    };
-
-    auto pop = [&]()->Node* {
-        if (length == 0) throw std::out_of_range("Red je prazan!");
-        length--;
-        Node* data = queue[first];
-        first = (first + 1) % capacity;
-        return data;
-    };
+    auto pop = pop_queue(capacity, first, last, length, queue);
+    auto push = push_queue(capacity, first, last, length, queue);
 
     if (root != nullptr) push(root);
     else return 0;
