@@ -14,22 +14,26 @@ public:
         Node *left;
         Node *right;
 
-        Node(int data = 0, int key = 0, Node *left = nullptr, Node *right = nullptr) {
+        Node() : data(0), key(0), left(nullptr), right(nullptr){}
+        Node(int data, int key) : data(data), key(key), left(nullptr), right(nullptr){};
+        explicit Node(int data, int key, Node *left, Node *right) {
             this->data = data;
             this->key = key;
             this->left = left;
             this->right = right;
         }
+
     };
 
     Binary_tree();
     Binary_tree(const Binary_tree &tree);
     Binary_tree(Binary_tree &&tree) noexcept;
-    ~Binary_tree();
+
+    virtual ~Binary_tree();
 
     void write_tree() const;
-    bool add_node(int key, int data);
-    bool delete_node(int key);
+    virtual bool add_node(int key, int data);
+    virtual bool delete_node(int key);
     Node* bst_search(int key) const;
     void inorder() const;
     void preorder() const;
@@ -46,11 +50,13 @@ public:
 
 private:
     Node *root;
+protected:
     static void destroy(const Node *node);
     static Node* clone(const Node *node);
 
     static auto pop_queue(const int &capacity, int &first, int &last, int &length, Binary_tree::Node *queue[capacity]);
     static auto push_queue(const int &capacity, int &first, int &last, int &length, Binary_tree::Node *queue[capacity]);
+
     static auto pop_stack(Binary_tree::Node *stack[256], int &stack_pointer);
     static auto push_stack(Binary_tree::Node *stack[256], int &stack_pointer);
 };
