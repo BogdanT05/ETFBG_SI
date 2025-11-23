@@ -7,4 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(BinaryTree
         "main.cpp"
         "binary_tree.cpp"
+        "binary_tree.h"
+        "avl_tree.cpp"
 )

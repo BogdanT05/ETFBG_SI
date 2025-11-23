@@ -54,11 +54,11 @@ protected:
     static void destroy(const Node *node);
     static Node* clone(const Node *node);
 
-    static auto pop_queue(const int &capacity, int &first, int &last, int &length, Binary_tree::Node *queue[capacity]);
-    static auto push_queue(const int &capacity, int &first, int &last, int &length, Binary_tree::Node *queue[capacity]);
+    static auto pop_queue(const int &capacity, int &first, int &last, int &length, Binary_tree::Node **queue);
+    static auto push_queue(const int &capacity, int &first, int &last, int &length, Binary_tree::Node **queue);
 
-    static auto pop_stack(Binary_tree::Node *stack[256], int &stack_pointer);
-    static auto push_stack(Binary_tree::Node *stack[256], int &stack_pointer);
+    static auto pop_stack(Binary_tree::Node **stack, int &stack_pointer);
+    static auto push_stack(Binary_tree::Node **stack, int &stack_pointer);
 };
 
 

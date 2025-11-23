@@ -3,8 +3,8 @@
 #include <stdexcept>
 #include <cmath>
 
-auto Binary_tree::pop_stack(Node *stack[256], int &stack_pointer) {
-    auto pop = [&stack, &stack_pointer]()->Node* {
+auto Binary_tree::pop_stack(Node **stack, int &stack_pointer) {
+    auto pop = [stack, &stack_pointer]()->Node* {
         if (stack_pointer == 0) return nullptr;
         Node *node = stack[--stack_pointer];
         return node;
@@ -12,15 +12,15 @@ auto Binary_tree::pop_stack(Node *stack[256], int &stack_pointer) {
     return pop;
 }
 
-auto Binary_tree::push_stack(Node *stack[256], int &stack_pointer) {
-    auto push = [&stack, &stack_pointer](Node *node) {
+auto Binary_tree::push_stack(Node **stack, int &stack_pointer) {
+    auto push = [stack, &stack_pointer](Node *node) {
         if (stack_pointer == 256) throw std::overflow_error("stack full");
         stack[stack_pointer++] = node;
     };
     return push;
 }
 
-auto Binary_tree::pop_queue(const int &capacity, int &first, int &last, int &length, Node *queue[capacity]) {
+auto Binary_tree::pop_queue(const int &capacity, int &first, int &last, int &length, Node **queue) {
     auto pop = [&]() -> Node* {
         if (length == 0) throw std::out_of_range("Red je prazan!");
         length--;
@@ -31,7 +31,7 @@ auto Binary_tree::pop_queue(const int &capacity, int &first, int &last, int &len
     return pop;
 }
 
-auto Binary_tree::push_queue(const int &capacity, int &first, int &last, int &length, Node *queue[capacity]){
+auto Binary_tree::push_queue(const int &capacity, int &first, int &last, int &length, Node **queue){
     auto push = [&](Node *node) {
         if (length == capacity) throw std::out_of_range("Red je pun!");
         length++;
