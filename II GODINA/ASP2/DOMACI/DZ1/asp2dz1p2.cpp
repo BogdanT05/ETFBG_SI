@@ -238,7 +238,7 @@ public:
                 return true;
             }
             if (current->data.loyalty_points > loyalty_points) current = current->left;
-            if (current->data.loyalty_points < loyalty_points) current = current->right;
+            else if (current->data.loyalty_points < loyalty_points) current = current->right;
         }
 
         return false;
