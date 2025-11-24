@@ -338,7 +338,6 @@ public:
     }
 
     void print_tree() const {
-        // TODO: Ispis, level order
         std::deque<Node*> queue;
         int initial_width = 120, current_width = 0, node_width = 0;
         if (root != nullptr) queue.push_back(root);
@@ -381,7 +380,6 @@ public:
     }
 
     void find_interval(int loyalty_points_min, int loyalty_points_max) const{
-        // TODO: Naci interval na osnovu nekog obilaska
         Node *current = root;
         std::stack<Node*> stack;
 

@@ -107,7 +107,7 @@ void search_interval(int min, int max, const int temperatures[], const int &leng
     std::cout << lower << " " << higher;
     std::cout << "Temperature u zadatom opsegu se pojavljuju u danima: \n";
     for (int i = lower; i <= higher; i++) {
-        std::cout << i << " ";
+        std::cout << i+1 << " ";
     }
 
     std::cout << std::endl;
@@ -181,8 +181,8 @@ int main() {
                 }
 
                 // U zavisnosti da li se pojavljuje vise ili jedan ispisujemo razlicit string
-                if (pos.pos == pos.last && pos.pos == pos.first) std::cout << "Temperatura se pojavljuje na dan: " << pos.pos << std::endl;
-                else std::cout << "Temperatura se pojavljuje prvi i poslednji put na dane: " << pos.first <<", " << pos.last << std::endl;
+                if (pos.pos == pos.last && pos.pos == pos.first) std::cout << "Temperatura se pojavljuje na dan: " << pos.pos + 1<< std::endl;
+                else std::cout << "Temperatura se pojavljuje prvi i poslednji put na dane: " << pos.first + 1 <<", " << pos.last + 1<< std::endl;
 
                 break;
             }
