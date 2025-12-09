@@ -95,7 +95,7 @@ void Binary_tree::write_tree() const  {
 
     // Ispis (stackoverflow inspiracija :))
     // Uz pomoc level ordera i odg pocetnih parametara ispis
-    int initial_width = int(pow(2, get_height()+2)), current_width = 0, node_width = 0;
+    int initial_width = static_cast<int>(pow(2, get_height() + 2)), current_width = 0, node_width = 0;
     if (root != nullptr) push(root);
     while (length != 0) {
         // initial width udaljenost izmedju pocetka i prvog cvora

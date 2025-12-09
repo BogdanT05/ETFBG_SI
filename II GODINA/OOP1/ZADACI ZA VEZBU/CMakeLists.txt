@@ -32,3 +32,9 @@ add_executable(Zadatak5
         "ZADATAK 5/person.h"
         "ZADATAK 5/directory.cpp"
 )
+
+add_executable(Zadatak6
+        "ZADATAK 6/main.cpp"
+        "ZADATAK 6/Complex.cpp"
+        "ZADATAK 6/Complex.h"
+)
