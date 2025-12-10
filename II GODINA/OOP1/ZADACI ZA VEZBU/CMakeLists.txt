@@ -37,4 +37,8 @@ add_executable(Zadatak6
         "ZADATAK 6/main.cpp"
         "ZADATAK 6/Complex.cpp"
         "ZADATAK 6/Complex.h"
+        "ZADATAK 6/Array.h"
+        "ZADATAK 6/Array.cpp"
+        "ZADATAK 6/Iterator.h"
+        "ZADATAK 6/Iterator.cpp"
 )
