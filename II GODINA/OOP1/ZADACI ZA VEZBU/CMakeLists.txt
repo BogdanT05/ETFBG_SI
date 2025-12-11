@@ -42,3 +42,11 @@ add_executable(Zadatak6
         "ZADATAK 6/Iterator.h"
         "ZADATAK 6/Iterator.cpp"
 )
+
+add_executable(Zadatak7
+        "ZADATAK7/main.cpp"
+        "ZADATAK7/Clock.cpp"
+        "ZADATAK7/Clock.h"
+        "ZADATAK7/ClockWD.cpp"
+        "ZADATAK7/ClockWD.h"
+)
