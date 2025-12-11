@@ -50,3 +50,9 @@ add_executable(Zadatak7
         "ZADATAK7/ClockWD.cpp"
         "ZADATAK7/ClockWD.h"
 )
+
+add_executable(Zadatak8
+        "ZADATAK8/main.cpp"
+        "ZADATAK8/Cuboid.cpp"
+        "ZADATAK8/Sphere.cpp"
+)

@@ -6,7 +6,6 @@ std::ostream &operator<<(std::ostream &os, const Clock &clock) {
     return os;
 }
 
-
 Clock::Clock(int hours, int minutes, int seconds) : hours(0), minutes(0), seconds(0){
     set_time(hours, minutes, seconds);
 }
