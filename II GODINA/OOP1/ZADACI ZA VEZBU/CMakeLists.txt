@@ -56,3 +56,12 @@ add_executable(Zadatak8
         "ZADATAK8/Cuboid.cpp"
         "ZADATAK8/Sphere.cpp"
 )
+
+add_executable(Zadatak9
+        "ZADATAK9/main.cpp"
+        "ZADATAK9/Line.cpp"
+        "ZADATAK9/Segment.cpp"
+        "ZADATAK9/Polyline.cpp"
+        "ZADATAK9/Polygon.cpp"
+        "ZADATAK9/Point.cpp"
+)
