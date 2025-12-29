@@ -1,18 +1,17 @@
-#include "Tree234.h"
+#include <fstream>
+
+#include "src/Scheduler.h"
+#include "src/Tree234.h"
 
 void print_menu() {
     std::cout << "========================================\n";
-    std::cout << "| 1. Kreiraj prazno stablo             |\n";
-    std::cout << "| 2. Obrisi celo stablo                |\n";
-    std::cout << "| 3. Ubaci novi proces                 |\n";
-    std::cout << "| 4. Obrisi proces iz stabla           |\n";
-    std::cout << "| 5. Pronadji proces                   |\n";
-    std::cout << "| 6. Ucitaj procese iz datoteke        |\n";
-    std::cout << "| 7. Ispisi jedan proces               |\n";
-    std::cout << "| 8. Ispisi 2-3-4 stablo               |\n";
-    std::cout << "| 9. Ispisi kao crveno-crno stablo     |\n";
-    std::cout << "|10. Simulacija (jedan korak)          |\n";
-    std::cout << "|11. Kompletna simulacija              |\n";
+    std::cout << "| 1. Ubaci novi proces                 |\n";
+    std::cout << "| 2. Obrisi proces iz stabla           |\n";
+    std::cout << "| 3. Pronadji proces                   |\n";
+    std::cout << "| 4. Ucitaj procese iz datoteke        |\n";
+    std::cout << "| 5. Ispisi stablo kao 234 i RB        |\n";
+    std::cout << "| 6. Simulacija (jedan korak)          |\n";
+    std::cout << "| 7. Kompletna simulacija              |\n";
     std::cout << "| 0. Izlaz                             |\n";
     std::cout << "========================================\n";
     std::cout << "Izaberite opciju: ";
@@ -20,46 +19,87 @@ void print_menu() {
 
 int main() {
     int choice;
+    auto* tree = new Tree234;
+    Scheduler scheduler(tree);
+
+    std::ofstream output;
+    output.open("result.txt");
+
+    if (!output.is_open()) {
+        std::cout << "Greska prilikom otvaranja!\n";
+        return 1;
+    }
 
     while (true) {
         print_menu();
         std::cin >> choice;
 
         switch (choice) {
-            case 1:
-                // TODO: kreiraj prazno stablo
+            case 1: {
+                std::string n;
+                int ttc, mwt;
+                std::cout << "Unesi ime, vreme potrebno za izvrsavnja i maks vreme cekanja (A 299 340): ";
+                std::cin >> n >> ttc >> mwt;
+
+                auto* process = new Process(n, ttc, mwt, 0, 0);
+                tree->insert_node(process);
+                std::cout << "USPESNO DODAN PROCES.";
                 break;
-            case 2:
-                // TODO: obrisi celo stablo
+            }
+            case 2: {
+                int ttc, mwt;
+                std::cout << "Unesi TTC i MWT za brisanje: ";
+                std::cin >> ttc >> mwt;
+
+                tree->delete_process(tree->find_process(ttc, mwt));
+                std::cout << "USPESNO OBRISAN";
                 break;
-            case 3:
-                // TODO: ubaci novi proces
+            }
+            case 3: {
+                int wt, et;
+                std::cout << "Unesi WT i ET za pretragu: ";
+                std::cin >> wt >> et;
+
+                Process* p = tree->find_process(wt, et);
+
+                if (!p) {
+                    std::cout << "Proces sa tim WT i ET ne postoji!\n";
+                } else {
+                    std::cout << "Nadjen proces: " << p->get_name() << "\n";
+                }
                 break;
-            case 4:
-                // TODO: obrisi proces iz stabla
+            }
+            case 4:{
+                std::string filename;
+                std::cout << "Unesi ime datoteke: ";
+                std::cin >> filename;
+
+                std::ifstream file;
+                file.open(filename);
+
+                if (!file.is_open()) {
+                    std::cout << "GRESKA PRILIKOM OTVARANJA FAJLA";
+                    break;
+                }
+
+                tree->read_tree(file);
+                file.close();
+                std::cout << "Procesi uspesno ucitani";
                 break;
+            }
             case 5:
-                // TODO: pronadji proces
+                tree->inorder_iterative();
+                std::cout << "\n";
+                std::cout << tree;
                 break;
             case 6:
-                // TODO: ucitaj procese iz datoteke
+                scheduler.step(output);
                 break;
             case 7:
-                // TODO: ispisi jedan proces
-                break;
-            case 8:
-                // TODO: ispisi 2-3-4 stablo
-                break;
-            case 9:
-                // TODO: ispisi kao crveno-crno stablo
-                break;
-            case 10:
-                // TODO: simulacija jedan korak
-                break;
-            case 11:
-                // TODO: kompletna simulacija
+                scheduler.run(output);
                 break;
             case 0:
+                output.close();
                 return 0;
             default:
                 break;
@@ -67,4 +107,5 @@ int main() {
 
         std::cout << "\n";
     }
+
 }

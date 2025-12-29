@@ -7,12 +7,12 @@ private:
     Tree234 *tree234;
     int time_slice;
 public:
-    explicit Scheduler(Tree234 *tree234 = nullptr, int time_slice = 100) :
+    explicit Scheduler(Tree234* tree234, int time_slice = 200) :
     tree234(tree234),
     time_slice(time_slice){}
 
-    void step(std::ostream &os);
-    void run(std::ostream &os);
+    bool step(std::ostream &os) const;
+    void run(std::ostream &os) const;
 };
 
 

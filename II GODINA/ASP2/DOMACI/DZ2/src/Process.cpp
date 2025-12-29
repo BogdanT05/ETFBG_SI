@@ -26,3 +26,18 @@ void Process::update_waiting_time(int update) {
 void Process::update_execution_time(int update) {
     execution_time += update;
 }
+
+bool operator <(const Process& process1, const Process& process2) {
+    if (process1.waiting_time != process2.waiting_time)
+        return process1.waiting_time < process2.waiting_time;
+
+    if (process1.execution_time != process2.execution_time)
+        return process1.execution_time < process2.execution_time;
+
+    return process1.name < process2.name;
+}
+
+bool operator>(const Process& process1, const Process& process2)
+{
+    return process2 < process1;
+}

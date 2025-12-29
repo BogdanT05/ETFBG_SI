@@ -2,14 +2,20 @@
 #define DZ2_PROCESS_H
 #include <string>
 
-
 class Process {
 private:
+    friend class Tree234;
+    friend class Scheduler;
+
     std::string name;
     int time_to_complete, maximum_waiting_time;
     int waiting_time, execution_time;
 
 public:
+
+    friend bool operator<(const Process& process1, const Process& process2);
+    friend bool operator>(const Process& process1, const Process& process2);
+
     Process();
     Process(std::string name, int time_to_complete, int maximum_waiting_time, int waiting_time, int execution_time);
 
