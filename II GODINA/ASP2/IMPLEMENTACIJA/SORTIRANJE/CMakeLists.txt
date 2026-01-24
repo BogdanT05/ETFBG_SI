@@ -28,4 +28,6 @@ add_executable(Sorting
         "Sorting Alghoritms/Counting_Sort.h"
         Observers/Console_Logger.cpp
         Observers/Console_Logger.h
+        Sort_Context.cpp
+        Sort_Context.h
 )
