@@ -1,0 +1,9 @@
+#ifndef SORTING_SELECTION_SORT_H
+#define SORTING_SELECTION_SORT_H
+
+
+class Selection_Sort {
+};
+
+
+#endif //SORTING_SELECTION_SORT_H

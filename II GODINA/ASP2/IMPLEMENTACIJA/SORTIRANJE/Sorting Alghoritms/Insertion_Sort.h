@@ -1,0 +1,9 @@
+#ifndef SORTING_INSERTION_SORT_H
+#define SORTING_INSERTION_SORT_H
+
+
+class Insertion_Sort {
+};
+
+
+#endif //SORTING_INSERTION_SORT_H

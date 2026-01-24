@@ -1,0 +1,9 @@
+#ifndef SORTING_CONSOLE_LOGGER_H
+#define SORTING_CONSOLE_LOGGER_H
+
+
+class Console_Logger {
+};
+
+
+#endif //SORTING_CONSOLE_LOGGER_H
