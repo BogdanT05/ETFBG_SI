@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(Sorting
         main.cpp
-        "Sorting Alghoritms/Sorting_Algorithm.cpp"
         "Sorting Alghoritms/Sorting_Algorithm.h"
         "Sorting Alghoritms/Selection_Sort.cpp"
         "Sorting Alghoritms/Selection_Sort.h"
