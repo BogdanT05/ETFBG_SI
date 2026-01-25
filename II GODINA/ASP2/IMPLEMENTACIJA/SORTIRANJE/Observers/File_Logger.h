@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 
+// Class that will document in separate text file changes that occur on array
 class File_Logger : Observer{
     std::ofstream &ofs;
     int step_counter;
