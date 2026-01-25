@@ -1,8 +1,10 @@
 #ifndef SORTING_SHAKE_SORT_H
 #define SORTING_SHAKE_SORT_H
+#include "Sorting_Algorithm.h"
 
 
-class Shake_Sort {
+class Shake_Sort : Sorting_Algorithm{
+    void sort(Data_Array &array) override;
 };
 
 
