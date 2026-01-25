@@ -4,6 +4,7 @@
 
 
 class Insertion_Sort : Sorting_Algorithm {
+public:
     void sort(Data_Array &array) override;
 };
 
