@@ -29,6 +29,8 @@ add_executable(Sorting
         Observers/Console_Logger.h
         "Sort Context/Sort_Context.cpp"
         "Sort Context/Sort_Context.h"
+        Observers/File_Logger.cpp
+        Observers/File_Logger.h
 )
 
 target_include_directories(Sorting

@@ -11,14 +11,15 @@ private:
     std::vector<int> array;
 public:
     Data_Array() = default;
-    int get_size() const;
+    [[nodiscard]] int get_size() const;
 
     void generate_array(int capacity, int lower, int higher);
     void fill_array(int capacity);
 
+    void state() const;
     void swap(int i, int j);
     void set(int index, int value);
-    bool compare(int i, int j) const;
+    [[nodiscard]] bool compare(int i, int j) const;
     void range(int l, int r) const;
 
     void add_observer(Observer* observer);

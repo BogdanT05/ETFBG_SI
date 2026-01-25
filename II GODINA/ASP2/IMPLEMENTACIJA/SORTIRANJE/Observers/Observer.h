@@ -1,5 +1,6 @@
 #ifndef DZ2_OBSERVER_H
 #define DZ2_OBSERVER_H
+#include <vector>
 
 // Abstract class that will be parental class to all other observers
 // It's methods are reactions to standard operations when sorting arrays
@@ -10,6 +11,7 @@ public:
     virtual void on_set(int index, int value) = 0;
     virtual void on_compare(int i, int j) = 0;
     virtual void on_range(int l, int r) = 0;
+    virtual void on_state(const std::vector<int>& state) = 0;
 
     virtual ~Observer() = default;
 };

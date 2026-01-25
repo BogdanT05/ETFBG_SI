@@ -27,10 +27,17 @@ void Data_Array::fill_array(int capacity) {
     }
 }
 
+void Data_Array::state() const {
+    for (int k = 0; k < observers.size(); k++) {
+        observers[k]->on_state(array);
+    }
+}
+
 void Data_Array::swap(int i, int j) {
     std::swap(array[i], array[j]);
     for (int k = 0; k < observers.size(); k++) {
         observers[k]->on_swap(i, j);
+        observers[k]->on_state(array);
     }
 }
 
@@ -38,6 +45,7 @@ void Data_Array::set(int index, int value) {
     array[index] = value;
     for (int k = 0; k < observers.size(); k++) {
         observers[k]->on_set(index, value);
+        observers[k]->on_state(array);
     }
 }
 
