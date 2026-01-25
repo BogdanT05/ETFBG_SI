@@ -12,6 +12,7 @@ private:
 public:
     Data_Array() = default;
     [[nodiscard]] int get_size() const;
+    [[nodiscard]] int get(int index) const;
 
     void generate_array(int capacity, int lower, int higher);
     void fill_array(int capacity);
@@ -21,6 +22,7 @@ public:
     void set(int index, int value);
     [[nodiscard]] bool compare(int i, int j) const;
     void range(int l, int r) const;
+
 
     void add_observer(Observer* observer);
 };

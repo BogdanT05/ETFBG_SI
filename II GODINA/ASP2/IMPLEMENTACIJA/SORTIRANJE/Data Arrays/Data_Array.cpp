@@ -6,6 +6,10 @@ int Data_Array::get_size() const {
     return array.size();
 }
 
+int Data_Array::get(int index) const {
+    return array[index];
+}
+
 void Data_Array::generate_array(int capacity, int lower, int higher) {
     array.clear();
 
