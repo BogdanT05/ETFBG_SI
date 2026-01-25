@@ -1,8 +1,10 @@
 #ifndef SORTING_SELECTION_SORT_H
 #define SORTING_SELECTION_SORT_H
+#include "Sorting_Algorithm.h"
 
 
-class Selection_Sort {
+class Selection_Sort : Sorting_Algorithm{
+    void sort(Data_Array &array) override;
 };
 
 
