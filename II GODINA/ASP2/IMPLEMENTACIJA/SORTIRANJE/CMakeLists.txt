@@ -23,8 +23,6 @@ add_executable(Sorting
         "Sorting Alghoritms/Quick_Sort.h"
         "Sorting Alghoritms/Radix_Sort.cpp"
         "Sorting Alghoritms/Radix_Sort.h"
-        "Sorting Alghoritms/Counting_Sort.cpp"
-        "Sorting Alghoritms/Counting_Sort.h"
         Observers/Console_Logger.cpp
         Observers/Console_Logger.h
         "Sort Context/Sort_Context.cpp"
