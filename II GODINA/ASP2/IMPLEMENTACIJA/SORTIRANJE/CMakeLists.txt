@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(Sorting
         main.cpp
+        "Data Arrays/Data_Array.cpp"
+        "Data Arrays/Data_Array.h"
         "Sorting Alghoritms/Sorting_Algorithm.h"
         "Sorting Alghoritms/Selection_Sort.cpp"
         "Sorting Alghoritms/Selection_Sort.h"
@@ -29,6 +31,7 @@ add_executable(Sorting
         "Sort Context/Sort_Context.h"
         Observers/File_Logger.cpp
         Observers/File_Logger.h
+        "Sorting Alghoritms/sorting_algorithms.h"
 )
 
 target_include_directories(Sorting
