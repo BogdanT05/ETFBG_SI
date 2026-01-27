@@ -3,7 +3,7 @@
 #include "Sorting_Algorithm.h"
 
 
-class Heap_Sort : Sorting_Algorithm {
+class Heap_Sort : public Sorting_Algorithm {
 public:
     void sort(Data_Array &array) override;
     static void make_heap(Data_Array &array) ;

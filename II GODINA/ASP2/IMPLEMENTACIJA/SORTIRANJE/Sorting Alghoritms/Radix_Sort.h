@@ -3,7 +3,7 @@
 #include "Sorting_Algorithm.h"
 
 
-class Radix_Sort : Sorting_Algorithm{
+class Radix_Sort : public Sorting_Algorithm{
 public:
     void sort(Data_Array &array) override;
 

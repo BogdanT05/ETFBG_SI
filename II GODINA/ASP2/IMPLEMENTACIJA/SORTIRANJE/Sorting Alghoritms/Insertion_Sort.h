@@ -3,7 +3,7 @@
 #include "Sorting_Algorithm.h"
 
 
-class Insertion_Sort : Sorting_Algorithm {
+class Insertion_Sort : public Sorting_Algorithm {
 public:
     void sort(Data_Array &array) override;
 };

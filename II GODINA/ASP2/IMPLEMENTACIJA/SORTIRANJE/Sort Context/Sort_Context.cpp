@@ -3,6 +3,7 @@
 Sort_Context::Sort_Context(Data_Array *data, Sorting_Algorithm *algorithm) : data(data), algorithm(algorithm){}
 
 void Sort_Context::sort() const {
+    data->state();
     algorithm->sort(*data);
 }
 

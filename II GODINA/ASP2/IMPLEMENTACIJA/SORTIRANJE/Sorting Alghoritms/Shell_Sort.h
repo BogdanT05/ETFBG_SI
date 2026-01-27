@@ -3,7 +3,7 @@
 #include "Sorting_Algorithm.h"
 #include <vector>
 
-class Shell_Sort : Sorting_Algorithm{
+class Shell_Sort : public Sorting_Algorithm{
 public:
     void sort(Data_Array &array) override;
 

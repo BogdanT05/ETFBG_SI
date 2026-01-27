@@ -3,7 +3,7 @@
 #include "Sorting_Algorithm.h"
 
 
-class Quick_Sort : Sorting_Algorithm {
+class Quick_Sort : public Sorting_Algorithm {
 public:
     void sort(Data_Array &array) override;
     static int partition(Data_Array &array, int low, int high);
