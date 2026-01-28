@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_IOERROR_H
+#define PROJEKAT2526_IOERROR_H
+
+
+class IOError {
+};
+
+
+#endif //PROJEKAT2526_IOERROR_H

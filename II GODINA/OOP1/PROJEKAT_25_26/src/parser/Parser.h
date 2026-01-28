@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_PARSER_H
+#define PROJEKAT2526_PARSER_H
+
+
+class Parser {
+};
+
+
+#endif //PROJEKAT2526_PARSER_H

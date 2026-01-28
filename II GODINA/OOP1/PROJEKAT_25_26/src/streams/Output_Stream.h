@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_OUTPUT_STREAM_H
+#define PROJEKAT2526_OUTPUT_STREAM_H
+
+
+class Output_Stream {
+};
+
+
+#endif //PROJEKAT2526_OUTPUT_STREAM_H

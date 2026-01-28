@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_PIPE_LINE_PLAN_H
+#define PROJEKAT2526_PIPE_LINE_PLAN_H
+
+
+class Pipe_Line_Plan {
+};
+
+
+#endif //PROJEKAT2526_PIPE_LINE_PLAN_H

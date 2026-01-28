@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_LEXICAL_ERROR_H
+#define PROJEKAT2526_LEXICAL_ERROR_H
+
+
+class Lexical_Error {
+};
+
+
+#endif //PROJEKAT2526_LEXICAL_ERROR_H

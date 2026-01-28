@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_SYNTAX_ERROR_H
+#define PROJEKAT2526_SYNTAX_ERROR_H
+
+
+class Syntax_Error {
+};
+
+
+#endif //PROJEKAT2526_SYNTAX_ERROR_H

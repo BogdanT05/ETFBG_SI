@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_COMMAND_H
+#define PROJEKAT2526_COMMAND_H
+
+
+class Command {
+};
+
+
+#endif //PROJEKAT2526_COMMAND_H

@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_SEMATIC_ERROR_H
+#define PROJEKAT2526_SEMATIC_ERROR_H
+
+
+class Semantic_Error {
+};
+
+
+#endif //PROJEKAT2526_SEMATIC_ERROR_H

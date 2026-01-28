@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_EXECUTION_PLAN_H
+#define PROJEKAT2526_EXECUTION_PLAN_H
+
+
+class Execution_Plan {
+};
+
+
+#endif //PROJEKAT2526_EXECUTION_PLAN_H

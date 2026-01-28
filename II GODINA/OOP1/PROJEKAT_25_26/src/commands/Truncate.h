@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_TRUNCATE_H
+#define PROJEKAT2526_TRUNCATE_H
+
+
+class Truncate {
+};
+
+
+#endif //PROJEKAT2526_TRUNCATE_H

@@ -1,0 +1,8 @@
+#ifndef PROJEKAT2526_TOKEN_H
+#define PROJEKAT2526_TOKEN_H
+
+class Token {
+
+};
+
+#endif //PROJEKAT2526_TOKEN_H

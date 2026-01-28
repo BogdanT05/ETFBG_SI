@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_EXECUTION_ERROR_H
+#define PROJEKAT2526_EXECUTION_ERROR_H
+
+
+class Execution_Error {
+};
+
+
+#endif //PROJEKAT2526_EXECUTION_ERROR_H

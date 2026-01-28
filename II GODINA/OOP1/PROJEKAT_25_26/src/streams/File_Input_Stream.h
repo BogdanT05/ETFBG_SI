@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_FILE_INPUT_STREAM_H
+#define PROJEKAT2526_FILE_INPUT_STREAM_H
+
+
+class File_Input_Stream {
+};
+
+
+#endif //PROJEKAT2526_FILE_INPUT_STREAM_H

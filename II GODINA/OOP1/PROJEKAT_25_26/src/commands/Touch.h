@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_TOUCH_H
+#define PROJEKAT2526_TOUCH_H
+
+
+class Touch {
+};
+
+
+#endif //PROJEKAT2526_TOUCH_H

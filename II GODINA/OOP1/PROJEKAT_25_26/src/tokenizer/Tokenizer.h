@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_TOKENIZER_H
+#define PROJEKAT2526_TOKENIZER_H
+
+
+class Tokenizer {
+};
+
+
+#endif //PROJEKAT2526_TOKENIZER_H

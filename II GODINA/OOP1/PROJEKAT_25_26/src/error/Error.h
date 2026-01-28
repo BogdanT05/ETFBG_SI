@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_ERROR_H
+#define PROJEKAT2526_ERROR_H
+
+
+class Error {
+};
+
+
+#endif //PROJEKAT2526_ERROR_H

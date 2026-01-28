@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_INTERPRETER_H
+#define PROJEKAT2526_INTERPRETER_H
+
+
+class Interpreter {
+};
+
+
+#endif //SORTING_INTERPRETER_H

@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_PROMPT_H
+#define PROJEKAT2526_PROMPT_H
+
+
+class Prompt {
+};
+
+
+#endif //PROJEKAT2526_PROMPT_H

@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_BATCH_H
+#define PROJEKAT2526_BATCH_H
+
+
+class Batch {
+};
+
+
+#endif //PROJEKAT2526_BATCH_H
