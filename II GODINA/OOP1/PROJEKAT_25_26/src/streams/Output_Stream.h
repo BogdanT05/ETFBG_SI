@@ -1,6 +1,6 @@
 #ifndef PROJEKAT2526_OUTPUT_STREAM_H
 #define PROJEKAT2526_OUTPUT_STREAM_H
-
+#include <string>
 
 class Output_Stream {
 public:

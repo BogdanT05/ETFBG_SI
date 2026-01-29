@@ -1,6 +1,6 @@
 #ifndef PROJEKAT2526_INPUT_STREAM_H
 #define PROJEKAT2526_INPUT_STREAM_H
-
+#include <string>
 
 class Input_Stream {
 public:

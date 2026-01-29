@@ -11,6 +11,7 @@ file(GLOB_RECURSE SOURCES
 add_executable(Projekat2526
         ${SOURCES}
         src/CLI.h
+        src/streams/Pipe_Buffer.h
 )
 
 target_include_directories(Projekat2526 PRIVATE
