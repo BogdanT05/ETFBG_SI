@@ -3,6 +3,10 @@
 
 
 class Input_Stream {
+public:
+    virtual bool read_line(std::string &line) = 0;
+    virtual bool eof() = 0;
+    virtual ~Input_Stream() = default;
 };
 
 

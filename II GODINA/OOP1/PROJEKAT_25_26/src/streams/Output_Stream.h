@@ -3,6 +3,11 @@
 
 
 class Output_Stream {
+public:
+    virtual void write_line(const std::string &line) = 0;
+    virtual void flush() = 0;
+
+    virtual ~Output_Stream() = default;
 };
 
 
