@@ -16,7 +16,7 @@ public:
     Interpreter(Tokenizer &tokenizer, Parser &parser, std::string prompt = "$");
     void set_prompt(const std::string &new_prompt);
 
-    void run();
+    void run() const;
 
     static void print_error(const Error &error);
 };

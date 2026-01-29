@@ -13,7 +13,7 @@ void Interpreter::set_prompt(const std::string& new_prompt) {
     prompt = new_prompt;
 }
 
-void Interpreter::run() {
+void Interpreter::run() const {
     while (true) {
         std::string raw_command;
         std::cout << prompt;
@@ -22,7 +22,7 @@ void Interpreter::run() {
         if (raw_command.empty() || is_blank(raw_command)) continue;
 
         try{
-            std::vector<Token> tokens = tokenizer.tokenize(raw_command);
+            std::vector<Token> tokens = Tokenizer::tokenize(raw_command);
             auto execution_plan = parser.parse(tokens);
             execution_plan->execute();
         }
