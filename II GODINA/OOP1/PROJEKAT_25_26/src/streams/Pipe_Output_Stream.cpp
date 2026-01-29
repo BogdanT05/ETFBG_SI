@@ -6,3 +6,7 @@ void Pipe_Output_Stream::write_line(const std::string &line) {
     buffer->data_buffer.push_back(line);
 }
 
+void Pipe_Output_Stream::flush() {
+
+}
+

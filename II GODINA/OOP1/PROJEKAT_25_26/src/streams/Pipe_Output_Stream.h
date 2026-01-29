@@ -11,7 +11,7 @@ private:
 public:
     explicit Pipe_Output_Stream(Pipe_Buffer *buffer);
     void write_line(const std::string &line) override;
-    void flush() override = 0;
+    void flush() override;
 };
 
 
