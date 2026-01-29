@@ -3,6 +3,9 @@
 
 
 class Execution_Plan {
+public:
+    virtual void execute() = 0;
+    virtual ~Execution_Plan() = default;
 };
 
 
