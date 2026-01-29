@@ -1,6 +1,9 @@
 #ifndef PROJEKAT2526_COMMAND_H
 #define PROJEKAT2526_COMMAND_H
+#include <iostream>
 
+#include "Input_Stream.h"
+#include "Output_Stream.h"
 
 class Command {
 protected:
@@ -8,15 +11,15 @@ protected:
     std::vector<std::string> arguments;
     std::vector<std::string> options;
 
-    std::istream *is;
-    std::ostream *os;
+    Input_Stream *is;
+    Output_Stream *os;
 public:
-    Command(std::string name, std::vector<std::string> arguments, std::vector<std::string> options, std::istream *is = &std::cin, std::ostream *os = &std::cout):
-        name(std::move(name)), arguments(std::move(arguments)), options(std::move(options)), is(is), os(os)
+    Command(std::string name, std::vector<std::string> arguments, std::vector<std::string> options):
+        name(std::move(name)), arguments(std::move(arguments)), options(std::move(options)), is(nullptr), os(nullptr)
     {}
 
-    virtual void set_input(std::istream *is_) = 0;
-    virtual void set_output(std::ostream *os_) = 0;
+    virtual void set_input(Input_Stream *is_) = 0;
+    virtual void set_output(Output_Stream *os_) = 0;
 
     virtual void execute() = 0;
     virtual ~Command() = default;
