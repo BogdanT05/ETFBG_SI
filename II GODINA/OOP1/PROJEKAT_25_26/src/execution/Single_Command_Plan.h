@@ -11,7 +11,7 @@ private:
     std::unique_ptr<Command> command;
 public:
     explicit Single_Command_Plan(std::unique_ptr<Command> command);
-    void execute() override;
+    void execute(Interpreter &interpreter) override;
 };
 
 
