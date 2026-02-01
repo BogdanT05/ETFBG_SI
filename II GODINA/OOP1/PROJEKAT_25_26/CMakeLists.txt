@@ -14,6 +14,7 @@ add_executable(Projekat2526
         src/streams/Pipe_Buffer.h
         src/error/Unknown_Command_Error.cpp
         src/error/Unknown_Command_Error.h
+        src/error/Error.cpp
 )
 
 target_include_directories(Projekat2526 PRIVATE
