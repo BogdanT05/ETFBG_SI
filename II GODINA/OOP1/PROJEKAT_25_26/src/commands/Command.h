@@ -1,6 +1,7 @@
 #ifndef PROJEKAT2526_COMMAND_H
 #define PROJEKAT2526_COMMAND_H
 #include <iostream>
+#include <vector>
 
 #include "Input_Stream.h"
 #include "Output_Stream.h"

@@ -1,8 +1,15 @@
 #ifndef PROJEKAT2526_TIME_H
 #define PROJEKAT2526_TIME_H
+#include "Command.h"
 
 
-class Time {
+class Time : public Command{
+public:
+    using Command::Command;
+    void execute() override;
+
+    void set_input(Input_Stream *is_) override {is = is_;}
+    void set_output(Output_Stream *os_) override {os = os_;}
 };
 
 
