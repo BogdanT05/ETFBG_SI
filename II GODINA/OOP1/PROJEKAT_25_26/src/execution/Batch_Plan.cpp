@@ -7,22 +7,21 @@
 #include "Tokenizer.h"
 
 
-Batch_Plan::Batch_Plan(Input_Stream *stream ,Tokenizer &tokenizer, Parser &parser) : file(stream), tokenizer(tokenizer), parser(parser){}
+Batch_Plan::Batch_Plan(Input_Stream *stream, Output_Stream *output_stream) : file(stream), output_stream(output_stream){}
 
-void Batch_Plan::execute() {
+void Batch_Plan::execute(Interpreter &interpreter) {
+    Output_Stream *old_output = interpreter.get_output();
+    interpreter.set_output(output_stream);
+
     std::string line;
     while (file->read_line(line)) {
-        if (line.empty() || is_blank(line)) continue;
+        if (line.empty() || is_blank(line))
+            continue;
 
-        try{
-            std::vector<Token> tokens = Tokenizer::tokenize(line);
-            const auto execution_plan = parser.parse(tokens);
-            execution_plan->execute();
-        }
-        catch (const Error &er) {
-            print_error(er);
-        }
+        interpreter.execute_line(line);
     }
+
+    interpreter.set_output(old_output);
 }
 
 void Batch_Plan::print_error(const Error &error) {

@@ -3,6 +3,7 @@
 #include "Error.h"
 #include "Execution_Plan.h"
 #include "Input_Stream.h"
+#include "Interpreter.h"
 #include "Parser.h"
 #include "Tokenizer.h"
 
@@ -10,12 +11,11 @@
 class Batch_Plan : public Execution_Plan{
 private:
     Input_Stream *file;
-    Tokenizer &tokenizer;
-    Parser &parser;
+    Output_Stream *output_stream;
     static bool is_blank(const std::string &string);
 public:
-    explicit Batch_Plan(Input_Stream *stream, Tokenizer &tokenizer, Parser &parser);
-    void execute() override;
+    Batch_Plan(Input_Stream *stream, Output_Stream *output_stream);
+    void execute(Interpreter &interpreter) override;
     static void print_error(const Error &error);
 };
 
