@@ -12,7 +12,7 @@ private:
     std::vector<std::unique_ptr<Command>> commands;
 public:
     explicit Pipe_Line_Plan(std::vector<std::unique_ptr<Command>> commands);
-    void execute() override;
+    void execute(Interpreter &interpreter) override;
 };
 
 

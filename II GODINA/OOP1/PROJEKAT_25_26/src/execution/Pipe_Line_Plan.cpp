@@ -6,7 +6,7 @@
 
 Pipe_Line_Plan::Pipe_Line_Plan(std::vector<std::unique_ptr<Command>> commands) : commands(std::move(commands)){}
 
-void Pipe_Line_Plan::execute() {
+void Pipe_Line_Plan::execute(Interpreter &interpreter) {
     if (commands.size() == 1) {
         commands[0]->execute();
         return;
