@@ -6,12 +6,12 @@ class Marko_Heuristic : public SortingAlgorithm {
 private:
     int c;
 
-    static void insertion_sort(Image *img, int left, int right, SortingDirection direction);
+    static void insertion_sort(const Image *img, int left, int right, SortingDirection direction);
     static void merge(const Image *img, int left, int mid, int right, SortingDirection direction);
-    bool is_nearly_sorted(Image *img, int left, int right, SortingDirection direction);
+    bool is_nearly_sorted(const Image *img, int left, int right, SortingDirection direction) const;
 public:
     explicit Marko_Heuristic(int c);
-    void sort(Image *image, SortingDirection direction) override;
+    void sort(Image *img, SortingDirection direction) override;
 };
 
 
