@@ -6,12 +6,12 @@
 class Maja_Heuristic : public SortingAlgorithm{
 private:
     int c;
-    void bubble_sort(Image *img, int left, int right, SortingDirection direction);
-    int partition(Image *img, int left, int right, SortingDirection direction);
+    static void bubble_sort(const Image *img, int left, int right, SortingDirection direction);
+    static int partition(const Image *img, int left, int right, SortingDirection direction);
 
 public:
     explicit Maja_Heuristic(int c);
-    void sort(Image *image, SortingDirection direction) override;
+    void sort(Image *img, SortingDirection direction) override;
 };
 
 
