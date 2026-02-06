@@ -1,0 +1,9 @@
+#ifndef PROJEKAT2526_MARKO_HEURISTIC_H
+#define PROJEKAT2526_MARKO_HEURISTIC_H
+
+
+class Marko_Heuristic {
+};
+
+
+#endif //PROJEKAT2526_MARKO_HEURISTIC_H
