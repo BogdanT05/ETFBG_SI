@@ -1,8 +1,17 @@
 #ifndef PROJEKAT2526_MARKO_HEURISTIC_H
 #define PROJEKAT2526_MARKO_HEURISTIC_H
+#include "sorting.h"
 
+class Marko_Heuristic : public SortingAlgorithm {
+private:
+    int c;
 
-class Marko_Heuristic {
+    static void insertion_sort(Image *img, int left, int right, SortingDirection direction);
+    static void merge(const Image *img, int left, int mid, int right, SortingDirection direction);
+    bool is_nearly_sorted(Image *img, int left, int right, SortingDirection direction);
+public:
+    explicit Marko_Heuristic(int c);
+    void sort(Image *image, SortingDirection direction) override;
 };
 
 
