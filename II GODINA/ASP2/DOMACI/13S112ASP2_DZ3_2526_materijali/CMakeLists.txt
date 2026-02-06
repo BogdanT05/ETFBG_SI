@@ -14,4 +14,7 @@ add_executable(ASPDZ3
         Marko_Heuristic.cpp
         Maja_Heuristic.cpp
         Marko_Heuristic.h
+        Sort.h
+        Sort.cpp
 )
+

@@ -15,11 +15,15 @@ void Std_Sort::sort(const Image *img, SortingDirection direction) {
         return (direction == ASCENDING)?(value_a < value_b):(value_a > value_b);
     });
 
+    std::vector<int> inverse(n);
+    for (int i = 0; i < n; i++)
+        inverse[position[i]] = i;
+
     for (int i = 0; i < n; i++) {
-        while (position[i] != i) {
-            int j = position[i];
+        while (inverse[i] != i) {
+            int j = inverse[i];
             img->swapElements(i, j);
-            std::swap(position[i], position[j]);
+            std::swap(inverse[i], inverse[j]);
         }
     }
 }
