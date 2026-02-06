@@ -11,12 +11,12 @@ enum SortingDirection {
 class SortingAlgorithm {
 public:
     virtual ~SortingAlgorithm() = default;
-    virtual void sort(Image* image, SortingDirection direction) = 0;
+    virtual void sort(const Image *image, SortingDirection direction) = 0;
 };
 
 class ExampleSort final : public SortingAlgorithm {
 public:
-    void sort(Image* image, SortingDirection direction) override {
+    void sort(const Image *image, SortingDirection direction) override {
         const int count = image->getElementCount();
 
         for (int i = 0; i < count; i++) {

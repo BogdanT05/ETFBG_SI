@@ -11,7 +11,7 @@ private:
     bool is_nearly_sorted(const Image *img, int left, int right, SortingDirection direction) const;
 public:
     explicit Marko_Heuristic(int c);
-    void sort(Image *img, SortingDirection direction) override;
+    void sort(const Image *img, SortingDirection direction) override;
 };
 
 

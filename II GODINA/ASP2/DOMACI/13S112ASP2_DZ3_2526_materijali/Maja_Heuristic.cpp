@@ -34,7 +34,7 @@ int Maja_Heuristic::partition(const Image *img, int left, int right, SortingDire
     return i + 1;
 }
 
-void Maja_Heuristic::sort(Image *img, SortingDirection direction) {
+void Maja_Heuristic::sort(const Image *img, SortingDirection direction) {
     int n = img->getElementCount();
     int max_depth = c * std::log2(n);
 

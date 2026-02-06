@@ -54,7 +54,7 @@ bool Marko_Heuristic::is_nearly_sorted(const Image *img, int left, int right, So
     return inv <= c * n;
 }
 
-void Marko_Heuristic::sort(Image *img, SortingDirection direction) {
+void Marko_Heuristic::sort(const Image *img, SortingDirection direction) {
     int n = img->getElementCount();
     for (int block = 1; block < n; block*=2) {
         for (int left = 0; left < n - block; left += 2 * block) {

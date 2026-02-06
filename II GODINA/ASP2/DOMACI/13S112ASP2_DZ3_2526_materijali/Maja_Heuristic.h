@@ -11,7 +11,7 @@ private:
 
 public:
     explicit Maja_Heuristic(int c);
-    void sort(Image *img, SortingDirection direction) override;
+    void sort(const Image *img, SortingDirection direction) override;
 };
 
 
