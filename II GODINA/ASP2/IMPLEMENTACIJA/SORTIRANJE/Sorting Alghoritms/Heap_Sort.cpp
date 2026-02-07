@@ -4,6 +4,7 @@
 // And then readjust the heap and repeat that proces until whole array is sorted
 void Heap_Sort::sort(Data_Array &array) {
     int heap_size = array.get_size();
+    make_heap(array);
     for (int i = array.get_size()-1; i > 0; i--) {
         array.swap(0, i);
         heapify(array, --heap_size, 0);
