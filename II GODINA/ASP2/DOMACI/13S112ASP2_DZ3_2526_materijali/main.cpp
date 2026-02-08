@@ -9,6 +9,7 @@
 #include "image.h"
 #include "image_processor.h"
 
+// Meni opcija
 void print_menu() {
     std::cout << " ================================================ \n";
     std::cout << " |                                                |\n";
@@ -77,6 +78,7 @@ void compare_algorithms() {
     std::cout << "Unesite c: ";
     std::cin >> c;
 
+    // Niz svih slika koje treba uporediti
     std::vector<std::string> images = {
         "image_1_asc.txt",
         "image_1_desc.txt",
@@ -98,6 +100,7 @@ void compare_algorithms() {
         return;
     }
 
+    // Formatiranje ispisa
     out << std::left
     << std::setw(20) << "Slika"
     << std::setw(15) << "Marko(ms)"
@@ -138,6 +141,7 @@ void compare_algorithms() {
         long long t_std = sw.stop();
         delete stl;
 
+        // Formatiranje ispisa
         out << std::left
         << std::setw(20) << imgFile
         << std::setw(15) << t_marko
@@ -151,6 +155,7 @@ void compare_algorithms() {
 }
 
 int main(){
+    // Glavni program
     bool running = true;
     while (running) {
         print_menu();

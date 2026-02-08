@@ -1,7 +1,11 @@
-#ifndef PROJEKAT2526_MARKO_HEURISTIC_H
-#define PROJEKAT2526_MARKO_HEURISTIC_H
+#ifndef MARKO_HEURISTIC_H
+#define MARKO_HEURISTIC_H
 #include "sorting.h"
 
+// Markova heuristika predstavlja spoj merge sorta i insertion sorta
+// Merge sort se radi dok particija nije skoro sortirana nakon cega se ona sortira
+// sa insertion sortom, particija je skoro sortirana kada je broj inverzija < n * c
+// gde je c proizvoljna konstanta
 class Marko_Heuristic : public SortingAlgorithm {
 private:
     int c;
@@ -15,4 +19,4 @@ public:
 };
 
 
-#endif //PROJEKAT2526_MARKO_HEURISTIC_H
+#endif //MARKO_HEURISTIC_H

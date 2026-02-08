@@ -5,6 +5,8 @@
 
 Maja_Heuristic::Maja_Heuristic(int c) : c(c){}
 
+// Bubble sort radi tako sto sortira dva susedna elementa i veci od njih pomera u desno
+// Na taj nacin najveci element se propagira na kraj niza i taj posupak se ponavlja dok niz ne postane soritran
 void Maja_Heuristic::bubble_sort(const Image *img, int left, int right, SortingDirection direction) {
     for (int i = left; i <= right; i++) {
         for (int j = left; j < right - (i - left); j++) {
@@ -17,6 +19,13 @@ void Maja_Heuristic::bubble_sort(const Image *img, int left, int right, SortingD
     }
 }
 
+// Particija se sortira oko pivot elementa na nacin da se za pivot bira najdesniji element u particiji
+// Nakon cega se ostali elementi pocevsi od prvog u toj particiji porede sa pivotom
+// Kroz niz se prolazi sa dva pokazivaca jedan koji ide kroz svaki element i pomera se na kraju svake iteracije
+// A drugi se pomera samo kada se naidje na element manji od pivota, kada nadjemo element manji od pivota
+// Vrsimo zamenu tog elementa i poslednje pozicije na kojoj se nalaze sve elementi manji od pivota
+// Na kraju petlje pivot stavljamo ispred svih elemenata koji su manji od njega i tako dobijamo particiju
+// U kojoj su svi levo manji a desno veci od pivota
 int Maja_Heuristic::partition(const Image *img, int left, int right, SortingDirection direction) {
     int pivot = img->getElement(right);
     int i = left - 1;
@@ -34,6 +43,11 @@ int Maja_Heuristic::partition(const Image *img, int left, int right, SortingDire
     return i + 1;
 }
 
+
+// iterativna implementacija quick sorta i bubble sorta spojena u jednu funkciju koje
+// cine majinu heuristiku, na stek se stavlja indeksi levog, desnog elementa i dubina do koje se islo
+// u svakom koraku dubina raste za jedan
+// Kada dubina same particije nakon skidanja sa steka predje max dubinu prelazi se na bubble sort
 void Maja_Heuristic::sort(const Image *img, SortingDirection direction) {
     int n = img->getElementCount();
     int max_depth = c * std::log2(n);
