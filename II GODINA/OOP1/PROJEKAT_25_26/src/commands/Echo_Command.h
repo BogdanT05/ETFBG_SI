@@ -6,7 +6,7 @@
 class Echo : public Command{
 public:
     using Command::Command;
-    void execute() override;
+    void execute(Interpreter &interpreter) override;
     void validate() override;
 
     void set_input(Input_Stream *is_) override {is = is_;}

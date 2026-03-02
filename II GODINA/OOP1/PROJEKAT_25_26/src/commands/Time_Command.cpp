@@ -3,8 +3,9 @@
 #include <iomanip>
 #include <ctime>
 #include <sstream>
+#include "Interpreter.h"
 
-void Time::execute() {
+void Time::execute(Interpreter &interpreter) {
     std::time_t now = std::time(nullptr);
     std::tm* local = std::localtime(&now);
 

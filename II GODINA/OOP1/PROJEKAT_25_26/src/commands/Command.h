@@ -1,11 +1,10 @@
 #ifndef PROJEKAT2526_COMMAND_H
 #define PROJEKAT2526_COMMAND_H
-#include <iostream>
 #include <vector>
-
 #include "Input_Stream.h"
 #include "Output_Stream.h"
 
+class Interpreter;
 class Command {
 protected:
     std::string name;
@@ -23,7 +22,7 @@ public:
     virtual void set_output(Output_Stream *os_) = 0;
     virtual void validate() = 0;
 
-    virtual void execute() = 0;
+    virtual void execute(Interpreter &interpreter) = 0;
     virtual ~Command() = default;
 };
 
