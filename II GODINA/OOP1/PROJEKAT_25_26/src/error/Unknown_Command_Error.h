@@ -4,6 +4,14 @@
 
 
 class Unknown_Command_Error : public Semantic_Error{
+private:
+    std::string command;
+    int position_;
+public:
+    Unknown_Command_Error(std::string &command, int position_);
+    [[nodiscard]] std::string message() const override;
+    [[nodiscard]] int position() const override;
+    [[nodiscard]] int length() const override;
 };
 
 
