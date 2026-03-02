@@ -6,8 +6,8 @@
 class Rm : public Command{
 public:
     using Command::Command;
-    void execute() override;
-
+    void execute(Interpreter &interpreter) override;
+    void validate() override;
     void set_input(Input_Stream *is_) override {is = is_;}
     void set_output(Output_Stream *os_) override {os = os_;}
 };
