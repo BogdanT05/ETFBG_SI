@@ -3,18 +3,18 @@
 #include "Interpreter.h"
 
 void Echo::execute(Interpreter &interpreter) {
-    std::string result;
-    for (std::size_t i = 0; i < arguments.size(); i++) {
-        if (i != arguments.size()-1)
-            result += arguments[i] + " ";
-        else
-            result += arguments[i];
-    }
+    std::unique_ptr<Input_Stream> temp_stream;
+    Input_Stream * source = resolve_input(temp_stream);
 
-    os->write_line(result);
+    std::string line;
+    while (source->read_line(line))
+        os->write_line(line);
 }
 
 void Echo::validate() {
     if (!options.empty())
         throw Semantic_Error("echo does not accept options");
+
+    if (arguments.size() > 1)
+        throw Semantic_Error("echo accepts at most 1 argument");
 }
