@@ -5,7 +5,7 @@
 
 class IOError : public Execution_Error{
 public:
-    explicit IOError(std::string& message_);
+    explicit IOError(std::string message_);
 };
 
 
