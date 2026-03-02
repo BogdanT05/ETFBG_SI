@@ -4,14 +4,13 @@
 #include <string>
 
 
-class Error {
+class Error : public std::exception{
 public:
-    virtual std::string message() = 0;
-    virtual int position() {return -1;}
-    virtual int length() {return 0;}
+    [[nodiscard]] virtual std::string message() const = 0;
+    [[nodiscard]] virtual int position() const {return -1;}
+    [[nodiscard]] virtual int length() const {return 0;}
     virtual void print(const std::string &line);
 
-    virtual ~Error() = default;
 };
 
 #endif //PROJEKAT2526_ERROR_H
