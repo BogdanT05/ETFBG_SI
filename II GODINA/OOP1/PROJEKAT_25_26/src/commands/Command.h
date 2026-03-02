@@ -21,6 +21,7 @@ public:
 
     virtual void set_input(Input_Stream *is_) = 0;
     virtual void set_output(Output_Stream *os_) = 0;
+    virtual void validate() = 0;
 
     virtual void execute() = 0;
     virtual ~Command() = default;
