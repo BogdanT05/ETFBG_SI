@@ -6,24 +6,15 @@
 #include "Semantic_Error.h"
 
 void Head::execute(Interpreter &interpreter) {
+    std::unique_ptr<Input_Stream> temp_stream;
+    Input_Stream * source = resolve_input(temp_stream);
+
     int num_lines = std::stoi(options[0].substr(2));
     std::string filename;
 
-    if (!arguments.empty())
-        filename = arguments[0];
-
-    Input_Stream *source = nullptr;
-    std::unique_ptr<File_Input_Stream> file_stream;
-
-    if (!filename.empty()) {
-        file_stream = std::make_unique<File_Input_Stream>(filename);
-        source = file_stream.get();
-    }
-    else
-        source = is;
-
     std::string line;
     int count = 0;
+
     while (count < num_lines && source->read_line(line)) {
         os->write_line(line);
         count++;
