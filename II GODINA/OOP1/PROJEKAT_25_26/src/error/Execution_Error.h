@@ -7,7 +7,7 @@ class Execution_Error : public Error{
 private:
     std::string message_;
 public:
-    explicit Execution_Error(std::string &message_);
+    explicit Execution_Error(std::string message_);
     [[nodiscard]]std::string message() const override;
 };
 
