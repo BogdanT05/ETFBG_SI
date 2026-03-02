@@ -141,14 +141,20 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
     bool seen_redirection_in = false;
     bool seen_redirection_out = false;
 
+    bool has_argument = false;
+    int redirect_in_position = -1;
+
     for (std::size_t i = 1; i < tokens.size(); i++) {
 
         if (tokens[i].get_type() == Token_type::OPTION) options.push_back(tokens[i].get_value());
-        else if (tokens[i].get_type() == Token_type::STRING || tokens[i].get_type() == Token_type::WORD)
+        else if (tokens[i].get_type() == Token_type::STRING || tokens[i].get_type() == Token_type::WORD) {
             arguments.push_back(Argument{tokens[i].get_value(), tokens[i].get_type()});
+            has_argument = true;
+        }
         else if (tokens[i].get_type() == Token_type::REDIRECT_IN) {
             if (i+1 < tokens.size() && (tokens[i+1].get_type() == Token_type::STRING || tokens[i+1].get_type() == Token_type::WORD)) {
                 if (!seen_redirection_in) {
+                    redirect_in_position = tokens[i].get_position();
                     command_input = std::make_unique<File_Input_Stream>(tokens[++i].get_value());
                     seen_redirection_in = true;
                 }
@@ -180,6 +186,9 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
             else throw Syntax_Error(tokens[i].get_position());
         }
     }
+
+    if (has_argument && seen_redirection_in)
+        throw Syntax_Error(redirect_in_position);
 
     auto command = make_command(command_name, arguments, options);
     if (!command) throw Unknown_Command_Error(command_name, tokens[0].get_position());
