@@ -5,16 +5,22 @@
 #include "Output_Stream.h"
 
 class Interpreter;
+
+struct Argument {
+    std::string value;
+    Token_type type;
+};
+
 class Command {
 protected:
     std::string name;
-    std::vector<std::string> arguments;
+    std::vector<Argument> arguments;
     std::vector<std::string> options;
 
     Input_Stream *is;
     Output_Stream *os;
 public:
-    Command(std::string name, std::vector<std::string> arguments, std::vector<std::string> options):
+    Command(std::string name, std::vector<Argument> arguments, std::vector<std::string> options):
         name(std::move(name)), arguments(std::move(arguments)), options(std::move(options)), is(nullptr), os(nullptr)
     {}
 
