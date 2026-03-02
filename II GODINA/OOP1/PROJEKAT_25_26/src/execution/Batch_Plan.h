@@ -4,9 +4,6 @@
 #include "Execution_Plan.h"
 #include "Input_Stream.h"
 #include "Interpreter.h"
-#include "Parser.h"
-#include "Tokenizer.h"
-
 
 class Batch_Plan : public Execution_Plan{
 private:
@@ -16,7 +13,7 @@ private:
 public:
     Batch_Plan(Input_Stream *stream, Output_Stream *output_stream);
     void execute(Interpreter &interpreter) override;
-    static void print_error(const Error &error);
+
 };
 
 

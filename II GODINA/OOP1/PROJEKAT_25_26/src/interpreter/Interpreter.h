@@ -21,7 +21,7 @@ public:
     void set_prompt(const std::string &new_prompt);
     void execute_line(const std::string &line);
     void run();
-    static void print_error(const Error &error);
+    static void print_error(Error &error, const std::string &line);
 
     [[nodiscard]] Output_Stream* get_output() const;
     void set_output(Output_Stream* out);

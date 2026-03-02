@@ -1,10 +1,7 @@
 #include "Batch_Plan.h"
-
 #include <algorithm>
-
 #include "Error.h"
-#include "Parser.h"
-#include "Tokenizer.h"
+
 
 
 Batch_Plan::Batch_Plan(Input_Stream *stream, Output_Stream *output_stream) : file(stream), output_stream(output_stream){}
@@ -22,10 +19,6 @@ void Batch_Plan::execute(Interpreter &interpreter) {
     }
 
     interpreter.set_output(old_output);
-}
-
-void Batch_Plan::print_error(const Error &error) {
-    error.print();
 }
 
 bool Batch_Plan::is_blank(const std::string &string) {

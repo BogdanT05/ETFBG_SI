@@ -1,7 +1,6 @@
 #include "Interpreter.h"
 #include <algorithm>
 #include <vector>
-#include "Token.h"
 
 Interpreter::Interpreter(Tokenizer &tokenizer, Parser &parser, std::string prompt) :
 tokenizer(tokenizer),
@@ -20,12 +19,12 @@ void Interpreter::set_prompt(const std::string& new_prompt) {
 
 void Interpreter::execute_line(const std::string &line) {
     try {
-        auto tokens = tokenizer.tokenize(line);
+        auto tokens = Tokenizer::tokenize(line);
         auto execution_plan = parser.parse(tokens);
         execution_plan->execute(*this);
     }
-    catch (const Error &er) {
-        print_error(er);
+    catch (Error &er) {
+        print_error(er, line);
     }
 }
 
@@ -44,8 +43,8 @@ void Interpreter::run(){
     }
 }
 
-void Interpreter::print_error(const Error &error) {
-    error.print();
+void Interpreter::print_error(Error &error, const std::string &line) {
+    error.print(line);
 }
 
 Output_Stream * Interpreter::get_output() const {

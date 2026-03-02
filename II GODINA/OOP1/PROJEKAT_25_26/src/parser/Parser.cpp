@@ -1,5 +1,4 @@
 #include "Parser.h"
-
 #include "Batch.h"
 #include "Batch_Plan.h"
 #include "Command.h"
@@ -30,7 +29,8 @@ std::unique_ptr<Execution_Plan> Parser::parse_single_command(const std::vector<T
 }
 
 std::unique_ptr<Execution_Plan> Parser::parse_batch(const std::vector<Token> &tokens) {
-    if (tokens[0].get_value() != "batch") throw Syntax_Error();
+    if (tokens.empty()) throw Syntax_Error(-1);
+    if (tokens[0].get_value() != "batch") throw Syntax_Error(tokens[0].get_position());
 
     std::string filename;
     bool script_seen = false;
@@ -39,32 +39,34 @@ std::unique_ptr<Execution_Plan> Parser::parse_batch(const std::vector<Token> &to
     std::unique_ptr<Output_Stream> output_stream = std::make_unique<Console_Output_Stream>();
 
     for (std::size_t i = 1; i < tokens.size(); i++) {
-        if (tokens[i].get_type() == Token_type::PIPE) throw Syntax_Error();
-        if (tokens[i].get_type() == Token_type::REDIRECT_IN) throw Syntax_Error();
+        if (tokens[i].get_type() == Token_type::PIPE) throw Syntax_Error(tokens[i].get_position());
+        if (tokens[i].get_type() == Token_type::REDIRECT_IN) throw Syntax_Error(tokens[i].get_position());
         if (tokens[i].get_type() == Token_type::STRING || tokens[i].get_type() == Token_type::WORD) {
             if (!script_seen) {
                 filename = tokens[i].get_value();
                 script_seen = true;
             }
-            else throw Syntax_Error();
+            else throw Syntax_Error(tokens[i].get_position());
         }
-        if (tokens[i].get_type() == Token_type::REDIRECT_OUT) {
-            if (!output_seen && i + 1 < tokens.size()) {
+        else if (tokens[i].get_type() == Token_type::REDIRECT_OUT) {
+            if (!output_seen && i + 1 < tokens.size() &&
+                (tokens[i+1].get_type() == Token_type::STRING || tokens[i+1].get_type() == Token_type::WORD)) {
                 output_stream = std::make_unique<File_Output_Stream>(tokens[++i].get_value(), false);
                 output_seen = true;
             }
-            else throw Syntax_Error();
+            else throw Syntax_Error(tokens[i].get_position());
         }
-        if (tokens[i].get_type() == Token_type::REDIRECT_APPEND) {
-            if (!output_seen && i + 1 < tokens.size()) {
+        else if (tokens[i].get_type() == Token_type::REDIRECT_APPEND) {
+            if (!output_seen && i + 1 < tokens.size() &&
+                (tokens[i+1].get_type() == Token_type::STRING || tokens[i+1].get_type() == Token_type::WORD)) {
                 output_stream = std::make_unique<File_Output_Stream>(tokens[++i].get_value(), true);
                 output_seen = true;
             }
-            else throw Syntax_Error();
+            else throw Syntax_Error(tokens[i].get_position());
         }
     }
 
-    if (!script_seen) throw Syntax_Error();
+    if (!script_seen) throw Syntax_Error(tokens[0].get_position());
     std::unique_ptr<Input_Stream> script = std::make_unique<File_Input_Stream>(filename);
 
     return std::make_unique<Batch_Plan>(script.release(), output_stream.release());
@@ -75,11 +77,17 @@ std::unique_ptr<Execution_Plan> Parser::parse_pipeline(const std::vector<Token> 
     std::vector<Token> segment;
     std::vector<std::vector<Token>> segments;
 
+    if (tokens.empty())
+        throw Syntax_Error(0);
+
+    if (tokens.back().get_type() == Token_type::PIPE)
+        throw Syntax_Error(tokens.back().get_position());
+
     for (const auto & token : tokens) {
         if (token.get_type() != Token_type::PIPE)
             segment.push_back(token);
         else {
-            if (segment.empty()) throw Syntax_Error();
+            if (segment.empty()) throw Syntax_Error(token.get_position());
             segments.push_back(segment);
             segment.clear();
         }
@@ -93,16 +101,16 @@ std::unique_ptr<Execution_Plan> Parser::parse_pipeline(const std::vector<Token> 
             if (i == 0 &&
                 (token.get_type() == Token_type::REDIRECT_OUT ||
                 token.get_type() == Token_type::REDIRECT_APPEND))
-                throw Syntax_Error();
+                throw Syntax_Error(token.get_position());
 
             if (i == segments.size() - 1 && token.get_type() == Token_type::REDIRECT_IN)
-                throw Syntax_Error();
+                throw Syntax_Error(token.get_position());
 
             if (i > 0 && i < segments.size()-1 &&
                 (token.get_type() == Token_type::REDIRECT_OUT ||
                 token.get_type() == Token_type::REDIRECT_APPEND ||
                 token.get_type() == Token_type::REDIRECT_IN))
-                throw Syntax_Error();
+                throw Syntax_Error(token.get_position());
         }
     }
 
@@ -114,8 +122,11 @@ std::unique_ptr<Execution_Plan> Parser::parse_pipeline(const std::vector<Token> 
 }
 
 std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> &tokens) {
-    if (tokens.empty() || tokens[0].get_type() != Token_type::WORD)
-        throw Syntax_Error();
+    if (tokens.empty())
+        throw Syntax_Error(0);
+
+    if (tokens[0].get_type() != Token_type::WORD)
+        throw Syntax_Error(tokens[0].get_position());
 
     std::string command_name = tokens[0].get_value();
 
@@ -137,9 +148,9 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
                     command_input = std::make_unique<File_Input_Stream>(tokens[++i].get_value());
                     seen_redirection_in = true;
                 }
-                else throw Syntax_Error();
+                else throw Syntax_Error(tokens[i].get_position());
             }
-            else throw Syntax_Error();
+            else throw Syntax_Error(tokens[i].get_position());
 
         }
         else if (tokens[i].get_type() == Token_type::REDIRECT_OUT) {
@@ -148,10 +159,10 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
                     command_output = std::make_unique<File_Output_Stream>(tokens[++i].get_value(), false);
                     seen_redirection_out = true;
                 }
-                else throw Syntax_Error();
+                else throw Syntax_Error(tokens[i].get_position());
             }
 
-            else throw Syntax_Error();
+            else throw Syntax_Error(tokens[i].get_position());
         }
         else if(tokens[i].get_type() == Token_type::REDIRECT_APPEND){
             if (i+1 < tokens.size() && (tokens[i+1].get_type() == Token_type::STRING || tokens[i+1].get_type() == Token_type::WORD)) {
@@ -159,14 +170,16 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
                     command_output = std::make_unique<File_Output_Stream>(tokens[++i].get_value(), true);
                     seen_redirection_out = true;
                 }
-                else throw Syntax_Error();
+                else throw Syntax_Error(tokens[i].get_position());
             }
 
-            else throw Syntax_Error();
+            else throw Syntax_Error(tokens[i].get_position());
         }
     }
 
     auto command = make_command(command_name, arguments, options);
+    if (!command) throw Unknown_Command_Error(command_name, tokens[0].get_position());
+
     command->set_input(command_input.release());
     command->set_output(command_output.release());
 
@@ -188,9 +201,19 @@ std::unique_ptr<Command> Parser::make_command(const std::string &command,const s
     if (command == "truncate") return std::unique_ptr<Command>(new Truncate(command, arguments, options));
     if (command == "wc") return std::unique_ptr<Command>(new Wc(command, arguments, options));
 
-    throw Unknown_Command_Error();
+    return nullptr;
 }
 
-std::unique_ptr<Execution_Plan> Parser::parse(std::vector<Token> &tokens) {
+std::unique_ptr<Execution_Plan> Parser::parse(const std::vector<Token> &tokens) {
+    if (tokens.empty()) throw Syntax_Error(0);
 
+    for (const auto& token : tokens) {
+        if (token.get_type() == Token_type::PIPE)
+            return parse_pipeline(tokens);
+    }
+
+    if (tokens[0].get_type() == Token_type::WORD && tokens[0].get_value() == "batch")
+        return parse_batch(tokens);
+
+    return parse_single_command(tokens);
 }

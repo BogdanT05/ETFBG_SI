@@ -18,7 +18,8 @@ std::vector<Token> Tokenizer::tokenize(const std::string &s) {
             while (i < s.length() && s[i] != '"')
                 word += s[i++];
 
-            if (i == s.length()){} //throw Lexical_Error("Unterminated string" , starting_positon);
+            if (i == s.length()) throw Lexical_Error(starting_positon, i-starting_positon,
+                "Unterminated string literal");
             Token token(Token_type::STRING, word, starting_positon);
             tokens.push_back(token);
             i++;

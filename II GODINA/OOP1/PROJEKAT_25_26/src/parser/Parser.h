@@ -15,7 +15,7 @@ private:
     static std::unique_ptr<Command> parse_command_segment(const std::vector<Token> &tokens);
     static std::unique_ptr<Command> make_command(const std::string &command, const std::vector<std::string> &arguments, const std::vector<std::string> &options);
 public:
-    std::unique_ptr<Execution_Plan> parse(std::vector<Token> &tokens);
+    static std::unique_ptr<Execution_Plan> parse(const std::vector<Token> &tokens);
 };
 
 
