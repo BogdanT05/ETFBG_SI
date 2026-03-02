@@ -19,17 +19,17 @@
 
 // Komande
 #include "commands/Command.h"
-#include "commands/Echo.h"
-#include "commands/Time.h"
-#include "commands/Date.h"
-#include "commands/Wc.h"
-#include "commands/Touch.h"
-#include "commands/Prompt.h"
-#include "commands/Rm.h"
-#include "commands/Truncate.h"
-#include "commands/Tr.h"
-#include "commands/Head.h"
-#include "commands/Batch.h"
+#include "commands/Echo_Command.h"
+#include "commands/Time_Command.h"
+#include "commands/Date_Command.h"
+#include "commands/Wc_Command.h"
+#include "commands/Touch_Command.h"
+#include "commands/Prompt_Command.h"
+#include "commands/Rm_Command.h"
+#include "commands/Truncate_Command.h"
+#include "commands/Tr_Command.h"
+#include "commands/Head_Command.h"
+#include "commands/Batch_Command.h"
 
 // Strimovi
 #include "streams/Input_Stream.h"
