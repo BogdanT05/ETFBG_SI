@@ -135,8 +135,8 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
 
     std::vector<std::string> options;
     std::vector<Argument> arguments;
-    std::unique_ptr<Input_Stream> command_input = std::make_unique<Console_Input_Stream>();
-    std::unique_ptr<Output_Stream> command_output = std::make_unique<Console_Output_Stream>();
+    std::unique_ptr<Input_Stream> command_input = nullptr;
+    std::unique_ptr<Output_Stream> command_output = nullptr;
 
     bool seen_redirection_in = false;
     bool seen_redirection_out = false;
@@ -187,11 +187,16 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
         }
     }
 
+    if (!seen_redirection_in) {
+        command_input = std::make_unique<Console_Input_Stream>();
+    }
+
     if (has_argument && seen_redirection_in)
         throw Syntax_Error(redirect_in_position);
 
     auto command = make_command(command_name, arguments, options);
     if (!command) throw Unknown_Command_Error(command_name, tokens[0].get_position());
+
     command->validate();
     command->set_input(command_input.release());
     command->set_output(command_output.release());

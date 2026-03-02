@@ -16,9 +16,11 @@ void Head::execute(Interpreter &interpreter) {
     int count = 0;
 
     std::string result;
-    while (count < num_lines && source->read_line(line)) {
-        result += line + '\n';
-        count++;
+    while (source->read_line(line)) {
+        if (count < num_lines) {
+            result += line + '\n';
+            count++;
+        }
     }
 
     os->write_line(result.substr(0, result.size()-1));

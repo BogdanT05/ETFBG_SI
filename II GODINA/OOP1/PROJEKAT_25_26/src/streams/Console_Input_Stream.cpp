@@ -2,7 +2,14 @@
 #include <iostream>
 
 bool Console_Input_Stream::read_line(std::string &line) {
-    return static_cast<bool>(std::getline(std::cin, line));
+    if (!std::getline(std::cin, line)) {
+        if (std::cin.eof()) {
+            std::cin.clear();
+        }
+        return false;
+    }
+    return true;
+
 }
 
 bool Console_Input_Stream::eof() const {

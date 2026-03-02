@@ -2,8 +2,6 @@
 #include <algorithm>
 #include "Error.h"
 
-
-
 Batch_Plan::Batch_Plan(Input_Stream *stream, Output_Stream *output_stream) : file(stream), output_stream(output_stream){}
 
 void Batch_Plan::execute(Interpreter &interpreter) {

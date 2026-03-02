@@ -28,6 +28,7 @@ public:
         name(std::move(name)), arguments(std::move(arguments)), options(std::move(options)), is(nullptr), os(nullptr)
     {}
 
+    [[nodiscard]] Output_Stream* get_output() const {return os;}
     virtual void set_input(Input_Stream *is_) = 0;
     virtual void set_output(Output_Stream *os_) = 0;
     virtual void validate() = 0;
