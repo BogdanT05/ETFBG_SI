@@ -1,26 +1,28 @@
 #include "Parser.h"
-#include "Batch.h"
+#include "Batch_Command.h"
 #include "Batch_Plan.h"
 #include "Command.h"
 #include "Console_Input_Stream.h"
 #include "Console_Output_Stream.h"
-#include "Date.h"
-#include "Echo.h"
+#include "Date_Command.h"
+#include "Echo_Command.h"
 #include "File_Input_Stream.h"
 #include "File_Output_Stream.h"
-#include "Head.h"
+#include "Head_Command.h"
 #include "Input_Stream.h"
 #include "Output_Stream.h"
 #include "Pipe_Line_Plan.h"
-#include "Prompt.h"
-#include "Rm.h"
+#include "Prompt_Command.h"
+#include "Rm_Command.h"
 #include "Single_Command_Plan.h"
 #include "Syntax_Error.h"
-#include "Touch.h"
-#include "Tr.h"
-#include "Truncate.h"
+#include "Touch_Command.h"
+#include "Tr_Command.h"
+#include "Truncate_Command.h"
 #include "Unknown_Command_Error.h"
-#include "Wc.h"
+#include "Wc_Command.h"
+#include "Execution_Plan.h"
+#include "Time_Command.h"
 
 std::unique_ptr<Execution_Plan> Parser::parse_single_command(const std::vector<Token> &tokens) {
     auto command = parse_command_segment(tokens);
@@ -114,6 +116,7 @@ std::unique_ptr<Execution_Plan> Parser::parse_pipeline(const std::vector<Token> 
         }
     }
 
+    commands.reserve(segments.size());
     for (const auto& segment_ : segments) {
         commands.push_back(parse_command_segment(segment_));
     }
@@ -131,7 +134,7 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
     std::string command_name = tokens[0].get_value();
 
     std::vector<std::string> options;
-    std::vector<std::string> arguments;
+    std::vector<Argument> arguments;
     std::unique_ptr<Input_Stream> command_input = std::make_unique<Console_Input_Stream>();
     std::unique_ptr<Output_Stream> command_output = std::make_unique<Console_Output_Stream>();
 
@@ -141,7 +144,8 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
     for (std::size_t i = 1; i < tokens.size(); i++) {
 
         if (tokens[i].get_type() == Token_type::OPTION) options.push_back(tokens[i].get_value());
-        else if (tokens[i].get_type() == Token_type::STRING || tokens[i].get_type() == Token_type::WORD) arguments.push_back(tokens[i].get_value());
+        else if (tokens[i].get_type() == Token_type::STRING || tokens[i].get_type() == Token_type::WORD)
+            arguments.push_back(Argument{tokens[i].get_value(), tokens[i].get_type()});
         else if (tokens[i].get_type() == Token_type::REDIRECT_IN) {
             if (i+1 < tokens.size() && (tokens[i+1].get_type() == Token_type::STRING || tokens[i+1].get_type() == Token_type::WORD)) {
                 if (!seen_redirection_in) {
@@ -186,7 +190,7 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
     return command;
 }
 
-std::unique_ptr<Command> Parser::make_command(const std::string &command,const std::vector<std::string> &arguments,
+std::unique_ptr<Command> Parser::make_command(const std::string &command,const std::vector<Argument> &arguments,
     const std::vector<std::string> &options) {
 
     if (command == "batch") return std::unique_ptr<Command>(new Batch(command, arguments, options));
