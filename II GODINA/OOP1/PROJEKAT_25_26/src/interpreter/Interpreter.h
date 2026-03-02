@@ -1,11 +1,12 @@
 #ifndef PROJEKAT2526_INTERPRETER_H
 #define PROJEKAT2526_INTERPRETER_H
-#include <iostream>
+#include <string>
 
-#include "Console_Output_Stream.h"
-#include "tokenizer/Tokenizer.h"
-#include "parser/Parser.h"
-#include "error/Error.h"
+class Parser;
+class Tokenizer;
+class Execution_Plan;
+class Output_Stream;
+class Error;
 
 class Interpreter {
 private:

@@ -1,6 +1,12 @@
 #include "Interpreter.h"
 #include <algorithm>
+#include "Parser.h"
+#include "Tokenizer.h"
+#include "Execution_Plan.h"
+#include "Error.h"
 #include <vector>
+
+#include "Console_Output_Stream.h"
 
 Interpreter::Interpreter(Tokenizer &tokenizer, Parser &parser, std::string prompt) :
 tokenizer(tokenizer),
@@ -20,7 +26,7 @@ void Interpreter::set_prompt(const std::string& new_prompt) {
 void Interpreter::execute_line(const std::string &line) {
     try {
         auto tokens = Tokenizer::tokenize(line);
-        auto execution_plan = parser.parse(tokens);
+        auto execution_plan = Parser::parse(tokens);
         execution_plan->execute(*this);
     }
     catch (Error &er) {
