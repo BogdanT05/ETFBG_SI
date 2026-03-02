@@ -5,21 +5,11 @@
 #include "Semantic_Error.h"
 
 void Wc::execute(Interpreter &interpreter) {
+    std::unique_ptr<Input_Stream> temp_stream;
+    Input_Stream *source = resolve_input(temp_stream);
+
     std::size_t counter = 0;
     std::string line;
-
-    Input_Stream *source = nullptr;
-    std::unique_ptr<File_Input_Stream> file_stream;
-
-    if (arguments.size() == 1) {
-        file_stream = std::make_unique<File_Input_Stream>(arguments[0]);
-        if (file_stream->eof())
-            throw IOError("Cannot open file '"+arguments[0]+"'");
-
-        source = file_stream.get();
-    }
-    else
-        source = is;
 
     bool count_words = (options[0] == "-w");
     bool count_char = (options[0] == "-c");
@@ -48,7 +38,7 @@ void Wc::execute(Interpreter &interpreter) {
 
 void Wc::validate() {
     if (options.size() != 1)
-        throw Semantic_Error("wc requiers only one option");
+        throw Semantic_Error("wc requires only one option");
     if (options[0] != "-w" && options[0] != "-c")
         throw Semantic_Error("Invalid option for wc '" + options[0] + "'");
     if (arguments.size() > 1)
