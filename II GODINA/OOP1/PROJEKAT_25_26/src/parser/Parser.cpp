@@ -179,7 +179,7 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
 
     auto command = make_command(command_name, arguments, options);
     if (!command) throw Unknown_Command_Error(command_name, tokens[0].get_position());
-
+    command->validate();
     command->set_input(command_input.release());
     command->set_output(command_output.release());
 
