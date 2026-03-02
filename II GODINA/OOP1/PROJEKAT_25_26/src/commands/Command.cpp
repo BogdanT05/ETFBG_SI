@@ -1,14 +1,21 @@
 #include "Command.h"
+
+#include <iostream>
 #include <memory>
+
+#include "File_Input_Stream.h"
 #include "String_Input_Stream.h"
 #include "Token.h"
 
 Input_Stream *Command::resolve_input(std::unique_ptr<Input_Stream> &stream) {
+
     if (!arguments.empty()) {
-        if (arguments[0].type == Token_type::STRING)
+        if (arguments[0].type == Token_type::STRING){
             stream = std::make_unique<String_Input_Stream>(arguments[0].value);
-        else
-            stream = std::make_unique<String_Input_Stream>(arguments[0].value);
+        }
+        else {
+            stream = std::make_unique<File_Input_Stream>(arguments[0].value);
+        }
         return stream.get();
     }
 

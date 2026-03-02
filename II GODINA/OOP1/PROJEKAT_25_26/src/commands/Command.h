@@ -4,6 +4,7 @@
 #include <memory>
 #include "Input_Stream.h"
 #include "Output_Stream.h"
+#include "Token.h"
 
 class Interpreter;
 

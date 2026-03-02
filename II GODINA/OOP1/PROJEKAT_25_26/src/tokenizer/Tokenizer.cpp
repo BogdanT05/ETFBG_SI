@@ -60,15 +60,17 @@ std::vector<Token> Tokenizer::tokenize(const std::string &s) {
             std::string word;
             i++;
             if (i < s.length() && s[i] == '"') {
+                word += '"';
                 i++;
                 while (i < s.length() && s[i] != '"')
                     word += s[i++];
 
                 if (i == s.length())
                     throw Lexical_Error(starting_positon, i-starting_positon, "Unterminated string in option");
+                word += '"';
+                i++;
             }
             else {
-
                 while (i < s.length() && !std::isspace(static_cast<unsigned char>(s[i])) && s[i] != '|' && s[i] != '"' && s[i] != '<' && s[i] != '>')
                     word += s[i++];
             }

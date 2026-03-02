@@ -7,8 +7,11 @@ void Echo::execute(Interpreter &interpreter) {
     Input_Stream * source = resolve_input(temp_stream);
 
     std::string line;
+    std::string result;
     while (source->read_line(line))
-        os->write_line(line);
+        result += line + '\n';
+
+    os->write_line(result.substr(0, result.size()-1));
 }
 
 void Echo::validate() {

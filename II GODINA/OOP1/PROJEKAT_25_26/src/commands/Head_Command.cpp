@@ -15,10 +15,13 @@ void Head::execute(Interpreter &interpreter) {
     std::string line;
     int count = 0;
 
+    std::string result;
     while (count < num_lines && source->read_line(line)) {
-        os->write_line(line);
+        result += line + '\n';
         count++;
     }
+
+    os->write_line(result.substr(0, result.size()-1));
 }
 
 void Head::validate() {
