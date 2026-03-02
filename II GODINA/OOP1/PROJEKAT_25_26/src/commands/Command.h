@@ -1,6 +1,7 @@
 #ifndef PROJEKAT2526_COMMAND_H
 #define PROJEKAT2526_COMMAND_H
 #include <vector>
+#include <memory>
 #include "Input_Stream.h"
 #include "Output_Stream.h"
 
@@ -19,6 +20,8 @@ protected:
 
     Input_Stream *is;
     Output_Stream *os;
+
+    Input_Stream* resolve_input(std::unique_ptr<Input_Stream> &stream);
 public:
     Command(std::string name, std::vector<Argument> arguments, std::vector<std::string> options):
         name(std::move(name)), arguments(std::move(arguments)), options(std::move(options)), is(nullptr), os(nullptr)
