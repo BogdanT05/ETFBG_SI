@@ -6,14 +6,14 @@
 
 
 void Truncate::execute(Interpreter &interpreter) {
-    std::ifstream check(arguments[0]);
+    std::ifstream check(arguments[0].value);
     if (!check.good())
-        throw Execution_Error("File does not exists '" + arguments[0] + "'");
+        throw Execution_Error("File does not exists '" + arguments[0].value + "'");
     check.close();
 
-    std::ofstream truncate_file(arguments[0], std::ios::trunc);
+    std::ofstream truncate_file(arguments[0].value, std::ios::trunc);
     if (!truncate_file)
-        throw Execution_Error("Cannot truncate file '" + arguments[0] + "'");
+        throw Execution_Error("Cannot truncate file '" + arguments[0].value + "'");
 
     truncate_file.close();
 }

@@ -6,13 +6,13 @@
 #include "Semantic_Error.h"
 
 void Rm::execute(Interpreter &interpreter) {
-    std::ifstream check(arguments[0]);
+    std::ifstream check(arguments[0].value);
     if (!check.good())
-        throw Execution_Error("File does not exists '" + arguments[0] + "'");
+        throw Execution_Error("File does not exists '" + arguments[0].value + "'");
     check.close();
 
-    if (std::remove(arguments[0].c_str()) != 0)
-        throw IOError("Cannot remove file '" + arguments[0] + "'");
+    if (std::remove(arguments[0].value.c_str()) != 0)
+        throw IOError("Cannot remove file '" + arguments[0].value + "'");
 }
 
 void Rm::validate() {

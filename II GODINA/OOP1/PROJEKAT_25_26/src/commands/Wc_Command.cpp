@@ -1,7 +1,6 @@
 #include "Wc_Command.h"
 #include <memory>
 #include "File_Input_Stream.h"
-#include "IOError.h"
 #include "Semantic_Error.h"
 
 void Wc::execute(Interpreter &interpreter) {

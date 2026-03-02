@@ -3,7 +3,7 @@
 #include "Semantic_Error.h"
 
 void Prompt::execute(Interpreter &interpreter) {
-    interpreter.set_prompt(arguments[0]);
+    interpreter.set_prompt(arguments[0].value);
 }
 
 void Prompt::validate() {

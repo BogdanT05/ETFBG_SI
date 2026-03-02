@@ -6,14 +6,14 @@
 #include "IOError.h"
 
 void Touch::execute(Interpreter &interpreter) {
-    std::ifstream file(arguments[0]);
+    std::ifstream file(arguments[0].value);
     if (file.good())
-        throw Execution_Error("File already exists '" + arguments[0] + "'");
+        throw Execution_Error("File already exists '" + arguments[0].value + "'");
 
     file.close();
-    std::ofstream create(arguments[0]);
+    std::ofstream create(arguments[0].value);
     if (!create)
-        throw IOError("Cannot create file '" + arguments[0] + "'");
+        throw IOError("Cannot create file '" + arguments[0].value + "'");
 
     create.close();
 }

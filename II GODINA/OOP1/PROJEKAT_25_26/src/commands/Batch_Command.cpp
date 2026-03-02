@@ -5,11 +5,11 @@
 #include "Semantic_Error.h"
 
 void Batch::execute(Interpreter &interpreter) {
-    std::string filename = arguments[0];
+    std::string filename = arguments[0].value;
     File_Input_Stream file_stream(filename);
 
     if (file_stream.eof())
-        throw IOError("Cannot open file '"+arguments[0]+"'");
+        throw IOError("Cannot open file '"+arguments[0].value+"'");
 
     Output_Stream *old = interpreter.get_output();
     interpreter.set_output(os);
