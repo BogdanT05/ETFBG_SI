@@ -26,6 +26,8 @@ void Batch::execute(Interpreter &interpreter) {
 }
 
 void Batch::validate() {
+    if (!is->is_console())
+        throw Semantic_Error("batch does not allow input redirection");
     if (!options.empty())
         throw Semantic_Error("batch does not accept options");
     if (arguments.size() != 1)

@@ -16,6 +16,9 @@ void Rm::execute(Interpreter &interpreter) {
 }
 
 void Rm::validate() {
+    if (!is->is_console())
+        throw Semantic_Error("rm does not allow input redirection");
+
     if (!options.empty())
         throw Semantic_Error("rm does not accept options");
 

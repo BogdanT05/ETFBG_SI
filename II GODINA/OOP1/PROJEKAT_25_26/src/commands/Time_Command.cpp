@@ -3,6 +3,9 @@
 #include <iomanip>
 #include <ctime>
 #include <sstream>
+
+#include "Console_Input_Stream.h"
+#include "File_Input_Stream.h"
 #include "Interpreter.h"
 
 void Time::execute(Interpreter &interpreter) {
@@ -17,10 +20,13 @@ void Time::execute(Interpreter &interpreter) {
 }
 
 void Time::validate() {
+    if (!is->is_console())
+        throw Semantic_Error("time does not allow input redirection");
+
     if (!arguments.empty())
-        throw Semantic_Error("date does not accept arguments");
+        throw Semantic_Error("time does not accept arguments");
 
     if (!options.empty()) {
-        throw Semantic_Error("date does not accept options");
+        throw Semantic_Error("time does not accept options");
     }
 }

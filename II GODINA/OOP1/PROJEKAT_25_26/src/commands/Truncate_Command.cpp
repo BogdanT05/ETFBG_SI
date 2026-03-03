@@ -19,6 +19,9 @@ void Truncate::execute(Interpreter &interpreter) {
 }
 
 void Truncate::validate() {
+    if (!is->is_console())
+        throw Semantic_Error("truncate does not allow input redirection");
+
     if (!options.empty())
         throw Semantic_Error("truncate does not accept options");
 

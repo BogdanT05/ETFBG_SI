@@ -17,6 +17,9 @@ void Date::execute(Interpreter &interpreter) {
 }
 
 void Date::validate() {
+    if (!is->is_console())
+        throw Semantic_Error("date does not allow input redirection");
+
     if (!arguments.empty())
         throw Semantic_Error("date does not accept arguments");
 

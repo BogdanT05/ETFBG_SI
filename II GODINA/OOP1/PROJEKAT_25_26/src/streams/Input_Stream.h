@@ -5,6 +5,7 @@
 class Input_Stream {
 public:
     virtual bool read_line(std::string &line) = 0;
+    [[nodiscard]] virtual bool is_console() const {return false;}
     [[nodiscard]] virtual bool eof() const = 0;
     virtual ~Input_Stream() = default;
 };

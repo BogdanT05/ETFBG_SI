@@ -8,8 +8,11 @@ bool Console_Input_Stream::read_line(std::string &line) {
         }
         return false;
     }
-    return true;
 
+    if (line.size() > 512)
+        line = line.substr(0, 512);
+
+    return true;
 }
 
 bool Console_Input_Stream::eof() const {

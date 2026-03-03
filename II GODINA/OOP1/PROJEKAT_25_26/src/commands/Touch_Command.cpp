@@ -19,6 +19,9 @@ void Touch::execute(Interpreter &interpreter) {
 }
 
 void Touch::validate() {
+    if (!is->is_console())
+        throw Semantic_Error("touch does not allow input redirection");
+
     if (!options.empty())
         throw Semantic_Error("touch does not accept options");
 

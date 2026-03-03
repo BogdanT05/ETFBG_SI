@@ -8,7 +8,7 @@ class String_Input_Stream : public Input_Stream{
 private:
     std::istringstream stream;
 public:
-    explicit String_Input_Stream(std::string text);
+    explicit String_Input_Stream(const std::string& text);
     bool read_line(std::string &line) override;
     bool eof() const override;
 };
