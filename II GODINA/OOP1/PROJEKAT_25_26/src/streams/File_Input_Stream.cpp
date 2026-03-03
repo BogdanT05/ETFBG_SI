@@ -4,7 +4,8 @@
 
 File_Input_Stream::File_Input_Stream(const std::string& filename){
     file.open(filename);
-    if (!file.is_open()){}
+
+    if (!file.is_open())
         throw IOError("Cannot open input file '" + filename + "'");
 }
 
