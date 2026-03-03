@@ -186,7 +186,7 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
             else throw Syntax_Error(tokens[i].get_position());
         }
     }
-
+  
     if (!seen_redirection_in) {
         command_input = std::make_unique<Console_Input_Stream>();
     }

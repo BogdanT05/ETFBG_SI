@@ -22,7 +22,7 @@ protected:
     Input_Stream *is;
     Output_Stream *os;
 
-    Input_Stream* resolve_input(std::unique_ptr<Input_Stream> &stream);
+    virtual Input_Stream* resolve_input(std::unique_ptr<Input_Stream> &stream);
 public:
     Command(std::string name, std::vector<Argument> arguments, std::vector<std::string> options):
         name(std::move(name)), arguments(std::move(arguments)), options(std::move(options)), is(nullptr), os(nullptr)

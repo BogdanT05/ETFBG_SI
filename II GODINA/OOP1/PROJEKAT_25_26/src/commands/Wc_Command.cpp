@@ -14,9 +14,11 @@ void Wc::execute(Interpreter &interpreter) {
     bool count_char = (options[0] == "-c");
 
     while (source->read_line(line)) {
-        if (count_char)
-            counter += line.size()+1;
-
+        if (count_char) {
+            counter += line.size();
+            if (!source->eof())
+                counter++;
+        }
         if (count_words) {
             bool in_word = false;
             for (char c : line) {

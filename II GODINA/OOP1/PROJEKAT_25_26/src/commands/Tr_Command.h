@@ -9,6 +9,9 @@ public:
     void execute(Interpreter &interpreter) override;
     void validate() override;
 
+    void find_pattern(int &pattern_index) const;
+    Input_Stream* resolve_input(std::unique_ptr<Input_Stream> &stream) override;
+
     void set_input(Input_Stream *is_) override {is = is_;}
     void set_output(Output_Stream *os_) override {os = os_;}
 };

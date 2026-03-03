@@ -8,6 +8,7 @@ Pipe_Line_Plan::Pipe_Line_Plan(std::vector<std::unique_ptr<Command>> commands) :
 
 void Pipe_Line_Plan::execute(Interpreter &interpreter) {
     if (commands.size() == 1) {
+        commands[0]->validate();
         commands[0]->execute(interpreter);
         return;
     }
@@ -31,6 +32,11 @@ void Pipe_Line_Plan::execute(Interpreter &interpreter) {
         }
     }
 
-    for (const auto & command : commands)
+    for (const auto & command : commands) {
+        if (!command->get_output())
+            command->set_output(interpreter.get_output());
+
+        command->validate();
         command->execute(interpreter);
+    }
 }

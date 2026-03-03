@@ -58,6 +58,8 @@ std::vector<Token> Tokenizer::tokenize(const std::string &s) {
         if (current_char == '-') {
             int starting_positon = i;
             std::string word;
+            Token_type option = Token_type::OPTION;
+            bool special_arg = false;
             i++;
             if (i < s.length() && s[i] == '"') {
                 word += '"';
@@ -69,13 +71,17 @@ std::vector<Token> Tokenizer::tokenize(const std::string &s) {
                     throw Lexical_Error(starting_positon, i-starting_positon, "Unterminated string in option");
                 word += '"';
                 i++;
+                special_arg = true;
             }
             else {
                 while (i < s.length() && !std::isspace(static_cast<unsigned char>(s[i])) && s[i] != '|' && s[i] != '"' && s[i] != '<' && s[i] != '>')
                     word += s[i++];
             }
 
-            Token token(Token_type::OPTION, "-"+word, starting_positon);
+            if (special_arg)
+                option = Token_type::STRING;
+
+            Token token(option, "-"+word, starting_positon);
             tokens.push_back(token);
 
             continue;
