@@ -1,5 +1,4 @@
 #include "Pipe_Line_Plan.h"
-
 #include "Pipe_Buffer.h"
 #include "Pipe_Input_Stream.h"
 #include "Pipe_Output_Stream.h"
@@ -13,26 +12,37 @@ void Pipe_Line_Plan::execute(Interpreter &interpreter) {
         return;
     }
 
+    auto buffers = create_buffers();
+    connect_commands(buffers);
+    execute_commands(interpreter);
+}
+
+std::vector<std::unique_ptr<Pipe_Buffer>>Pipe_Line_Plan::create_buffers() const {
     std::vector<std::unique_ptr<Pipe_Buffer>> buffers;
-    buffers.reserve(commands.size()-1);
+    buffers.reserve(commands.size() - 1);
 
-    for (std::size_t i = 0; i < commands.size()-1; i++) {
+    for (std::size_t i = 0; i < commands.size() - 1; i++)
         buffers.push_back(std::make_unique<Pipe_Buffer>());
-    }
 
-    for (std::size_t i = 0; i < commands.size(); i++) {
+    return buffers;
+}
+
+void Pipe_Line_Plan::connect_commands(const std::vector<std::unique_ptr<Pipe_Buffer>>& buffers) const {
+    for (std::size_t i = 0; i < commands.size(); i++){
         if (i > 0) {
-            auto *in = new Pipe_Input_Stream(buffers[i-1].get());
+            auto* in = new Pipe_Input_Stream(buffers[i - 1].get());
             commands[i]->set_input(in);
         }
 
-        if (i < commands.size()-1) {
-            auto *out = new Pipe_Output_Stream(buffers[i].get());
+        if (i < commands.size() - 1) {
+            auto* out = new Pipe_Output_Stream(buffers[i].get());
             commands[i]->set_output(out);
         }
     }
+}
 
-    for (const auto & command : commands) {
+void Pipe_Line_Plan::execute_commands(Interpreter& interpreter) const {
+    for (const auto& command : commands){
         if (!command->get_output())
             command->set_output(interpreter.get_output());
 
