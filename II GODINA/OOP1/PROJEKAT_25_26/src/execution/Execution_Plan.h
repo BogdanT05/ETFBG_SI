@@ -2,6 +2,8 @@
 #define PROJEKAT2526_EXECUTION_PLAN_H
 #include "Interpreter.h"
 
+// Abstract class for execution plans
+// Execution plan represent way of interaction between commands
 
 class Execution_Plan {
 public:

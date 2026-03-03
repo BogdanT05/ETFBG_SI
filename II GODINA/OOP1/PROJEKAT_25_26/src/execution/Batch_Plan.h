@@ -5,6 +5,8 @@
 #include "Input_Stream.h"
 #include "Interpreter.h"
 
+// Batch plan used for batch command, acts similar to interpreter
+
 class Batch_Plan : public Execution_Plan{
 private:
     Input_Stream *file;

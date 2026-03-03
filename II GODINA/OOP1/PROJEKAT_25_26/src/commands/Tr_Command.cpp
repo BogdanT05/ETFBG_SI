@@ -89,7 +89,6 @@ Input_Stream * Tr::resolve_input(std::unique_ptr<Input_Stream> &stream) {
     find_pattern(pattern_index);
 
     if (pattern_index > 0) {
-
         const auto& [value, type] = arguments[0];
 
         if (type == Token_type::STRING)

@@ -1,10 +1,11 @@
 #include "Tokenizer.h"
-
 #include <utility>
 #include "Lexical_Error.h"
+
 std::vector<Token> Tokenizer::tokenize(const std::string &s) {
     std::vector<Token> tokens;
     int i = 0;
+    // Different characters lead to their respective token types
     while (i < s.length()){
         char current_char = s[i];
         if (std::isspace(static_cast<unsigned char>(current_char)))
@@ -36,6 +37,7 @@ void Tokenizer::string_literal(std::vector<Token> &tokens, const std::string &s,
     while (i < s.length() && s[i] != '"')
         word += s[i++];
 
+    // If closing quotation marks are missing
     if (i == s.length()) throw Lexical_Error(starting_positon, i-starting_positon,
         "Unterminated string literal");
     Token token(Token_type::STRING, word, starting_positon);
@@ -52,6 +54,7 @@ void Tokenizer::pipe(std::vector<Token> &tokens, int &i) {
 void Tokenizer::redirect_append(std::vector<Token> &tokens, int &i) {
     Token token(Token_type::REDIRECT_APPEND, ">>", i);
     tokens.push_back(token);
+    // >> takes 2 spaces so we skip 2 characters'][=[;p-
     i+=2;
 }
 
@@ -68,6 +71,7 @@ void Tokenizer::option(std::vector<Token> &tokens, const std::string &s, int &i)
 
     bool special_arg = false;
     i++;
+    // For command tr argument has both - and " " so here its recognized with bool special arg
     if (i < s.length() && s[i] == '"') {
         word += '"';
         i++;
@@ -81,6 +85,7 @@ void Tokenizer::option(std::vector<Token> &tokens, const std::string &s, int &i)
         special_arg = true;
     }
     else {
+        // regular option must end on either blank, |, ", < or >
         while (i < s.length() && !std::isspace(static_cast<unsigned char>(s[i])) && s[i] != '|' && s[i] != '"' && s[i] != '<' && s[i] != '>')
             word += s[i++];
     }
@@ -88,6 +93,7 @@ void Tokenizer::option(std::vector<Token> &tokens, const std::string &s, int &i)
     if (special_arg)
         option = Token_type::STRING;
 
+    // We keep '-' for validation later on
     Token token(option, "-"+word, starting_positon);
     tokens.push_back(token);
 }

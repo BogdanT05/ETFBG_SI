@@ -1,9 +1,9 @@
 #ifndef PROJEKAT2526_FILE_OUTPUT_STREAM_H
 #define PROJEKAT2526_FILE_OUTPUT_STREAM_H
 #include <fstream>
-
 #include "Output_Stream.h"
 
+// Class responsible for opening, writing, closing specified files.
 
 class File_Output_Stream : public Output_Stream{
 private:

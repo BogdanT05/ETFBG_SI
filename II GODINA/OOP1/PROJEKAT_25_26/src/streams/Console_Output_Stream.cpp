@@ -1,5 +1,4 @@
 #include "Console_Output_Stream.h"
-
 #include <iostream>
 
 void Console_Output_Stream::write_line(const std::string &line) {

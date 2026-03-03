@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+// Simple buffer for pipeline input/output
 
 class Pipe_Buffer {
 public:

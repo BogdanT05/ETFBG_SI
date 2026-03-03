@@ -4,6 +4,8 @@
 #include "String_Input_Stream.h"
 #include "Token.h"
 
+// Only true method in command class that is used for resolving input/output streams
+// Other commands usually dont override this method
 Input_Stream *Command::resolve_input(std::unique_ptr<Input_Stream> &stream) {
 
     if (!arguments.empty()) {

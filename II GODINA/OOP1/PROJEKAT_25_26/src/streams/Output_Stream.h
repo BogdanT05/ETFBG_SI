@@ -2,6 +2,8 @@
 #define PROJEKAT2526_OUTPUT_STREAM_H
 #include <string>
 
+// Abstract class for every output stream
+
 class Output_Stream {
 public:
     virtual void write_line(const std::string &line) = 0;

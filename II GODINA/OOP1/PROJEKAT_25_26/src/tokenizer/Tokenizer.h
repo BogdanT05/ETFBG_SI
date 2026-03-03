@@ -3,6 +3,9 @@
 #include <vector>
 #include "Token.h"
 
+// Tokenizer takes raw string and makes vector of tokens based on each part of the string.
+// Its first step in processing input from command line.
+
 class Tokenizer {
 public:
     static std::vector<Token> tokenize(const std::string &s);

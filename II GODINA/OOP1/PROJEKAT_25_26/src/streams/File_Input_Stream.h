@@ -1,8 +1,9 @@
 #ifndef PROJEKAT2526_FILE_INPUT_STREAM_H
 #define PROJEKAT2526_FILE_INPUT_STREAM_H
 #include <fstream>
-
 #include "Input_Stream.h"
+
+// Class responsible from reading from specified file
 
 class File_Input_Stream : public Input_Stream{
 private:

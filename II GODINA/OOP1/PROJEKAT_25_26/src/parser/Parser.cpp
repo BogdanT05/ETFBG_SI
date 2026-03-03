@@ -24,6 +24,7 @@
 #include "Execution_Plan.h"
 #include "Time_Command.h"
 
+
 std::unique_ptr<Execution_Plan> Parser::parse_single_command(const std::vector<Token> &tokens) {
     auto command = parse_command_segment(tokens);
     auto single_command_plan = std::make_unique<Single_Command_Plan>(std::move(command));
@@ -41,6 +42,7 @@ std::unique_ptr<Execution_Plan> Parser::parse_batch(const std::vector<Token> &to
     std::unique_ptr<Output_Stream> output_stream = std::make_unique<Console_Output_Stream>();
 
     for (std::size_t i = 1; i < tokens.size(); i++) {
+        // Limitations of batch command
         if (tokens[i].get_type() == Token_type::PIPE) throw Syntax_Error(tokens[i].get_position());
         if (tokens[i].get_type() == Token_type::REDIRECT_IN) throw Syntax_Error(tokens[i].get_position());
         if (tokens[i].get_type() == Token_type::STRING || tokens[i].get_type() == Token_type::WORD) {
@@ -86,6 +88,7 @@ std::unique_ptr<Execution_Plan> Parser::parse_pipeline(const std::vector<Token> 
         throw Syntax_Error(tokens.back().get_position());
 
     for (const auto & token : tokens) {
+        // Checking for 2 consecutive pipes (|| - invalid)
         if (token.get_type() != Token_type::PIPE)
             segment.push_back(token);
         else {
@@ -98,6 +101,7 @@ std::unique_ptr<Execution_Plan> Parser::parse_pipeline(const std::vector<Token> 
         segments.push_back(segment);
     }
 
+    // Checking for invalid redirections
     for (std::size_t i = 0; i < segments.size(); i++) {
         for (const auto &token:segments[i]) {
             if (i == 0 &&
@@ -138,6 +142,7 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
     std::unique_ptr<Input_Stream> command_input = nullptr;
     std::unique_ptr<Output_Stream> command_output = nullptr;
 
+    // Indicators for checking limitations
     bool seen_redirection_in = false;
     bool seen_redirection_out = false;
 
@@ -152,6 +157,7 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
             has_argument = true;
         }
         else if (tokens[i].get_type() == Token_type::REDIRECT_IN) {
+            // Checking if there is stream for redirection
             if (i+1 < tokens.size() && (tokens[i+1].get_type() == Token_type::STRING || tokens[i+1].get_type() == Token_type::WORD)) {
                 if (!seen_redirection_in) {
                     redirect_in_position = tokens[i].get_position();
@@ -164,6 +170,7 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
 
         }
         else if (tokens[i].get_type() == Token_type::REDIRECT_OUT) {
+            // Checking if there is stream for redirection
             if (i+1 < tokens.size() && (tokens[i+1].get_type() == Token_type::STRING || tokens[i+1].get_type() == Token_type::WORD)) {
                 if (!seen_redirection_out) {
                     command_output = std::make_unique<File_Output_Stream>(tokens[++i].get_value(), false);
@@ -175,6 +182,7 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
             else throw Syntax_Error(tokens[i].get_position());
         }
         else if(tokens[i].get_type() == Token_type::REDIRECT_APPEND){
+            // Checking if there is stream for redirection
             if (i+1 < tokens.size() && (tokens[i+1].get_type() == Token_type::STRING || tokens[i+1].get_type() == Token_type::WORD)) {
                 if (!seen_redirection_out) {
                     command_output = std::make_unique<File_Output_Stream>(tokens[++i].get_value(), true);
@@ -187,6 +195,7 @@ std::unique_ptr<Command> Parser::parse_command_segment(const std::vector<Token> 
         }
     }
 
+    // default input stream is console
     if (!seen_redirection_in) {
         command_input = std::make_unique<Console_Input_Stream>();
     }
@@ -222,6 +231,7 @@ std::unique_ptr<Command> Parser::make_command(const std::string &command,const s
     return nullptr;
 }
 
+// Depending on type of tokens make one of 3 execution plans
 std::unique_ptr<Execution_Plan> Parser::parse(const std::vector<Token> &tokens) {
     if (tokens.empty()) throw Syntax_Error(0);
 

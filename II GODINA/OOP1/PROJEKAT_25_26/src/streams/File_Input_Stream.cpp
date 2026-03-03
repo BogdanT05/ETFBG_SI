@@ -5,10 +5,11 @@
 File_Input_Stream::File_Input_Stream(const std::string& filename){
     file.open(filename);
     if (!file.is_open()){}
-        //throw IOError("Cannot open input file", filename);
+        throw IOError("Cannot open input file '" + filename + "'");
 }
 
 bool File_Input_Stream::read_line(std::string &line) {
+    // std::getline returns integer
     return static_cast<bool>(std::getline(file, line));
 }
 

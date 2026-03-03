@@ -8,6 +8,9 @@ class Execution_Plan;
 class Output_Stream;
 class Error;
 
+// Main class in program that connects every other element of program
+// It runs main loop of program
+
 class Interpreter {
 private:
     Tokenizer &tokenizer;

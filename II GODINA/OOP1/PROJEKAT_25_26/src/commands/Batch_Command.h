@@ -2,7 +2,6 @@
 #define PROJEKAT2526_BATCH_H
 #include "Command.h"
 
-
 class Batch : public Command{
 public:
     using Command::Command;

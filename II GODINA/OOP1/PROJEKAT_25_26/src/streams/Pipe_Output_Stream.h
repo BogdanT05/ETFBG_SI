@@ -4,6 +4,7 @@
 #include "Pipe_Buffer.h"
 #include <string>
 
+// Class that is used for writing in pipe buffer
 
 class Pipe_Output_Stream : public Output_Stream{
 private:

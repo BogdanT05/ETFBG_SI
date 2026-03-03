@@ -8,6 +8,9 @@
 
 class Interpreter;
 
+// Command class represent one command, every command is derived from here
+// Specification for every command are given in project documentation.
+
 struct Argument {
     std::string value;
     Token_type type;

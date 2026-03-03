@@ -3,6 +3,7 @@
 #include <sstream>
 #include "Input_Stream.h"
 
+// Class that is responsible for reading from string stream
 
 class String_Input_Stream : public Input_Stream{
 private:

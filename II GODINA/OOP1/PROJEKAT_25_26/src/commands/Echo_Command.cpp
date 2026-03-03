@@ -11,6 +11,7 @@ void Echo::execute(Interpreter &interpreter) {
     while (source->read_line(line))
         result += line + '\n';
 
+    // Deleting last '\n'
     os->write_line(result.substr(0, result.size()-1));
 }
 

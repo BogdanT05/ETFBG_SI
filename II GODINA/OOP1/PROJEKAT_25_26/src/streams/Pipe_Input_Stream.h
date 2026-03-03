@@ -3,6 +3,7 @@
 #include "Input_Stream.h"
 #include "Pipe_Buffer.h"
 
+// Class that is used for reading from pipe buffer
 
 class Pipe_Input_Stream : public Input_Stream{
 private:

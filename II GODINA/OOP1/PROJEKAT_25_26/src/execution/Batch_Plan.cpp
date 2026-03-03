@@ -5,6 +5,7 @@
 Batch_Plan::Batch_Plan(Input_Stream *stream, Output_Stream *output_stream) : file(stream), output_stream(output_stream){}
 
 void Batch_Plan::execute(Interpreter &interpreter) {
+    // After completing batch instruction we dont want to permanently change interpreter output stream
     Output_Stream *old_output = interpreter.get_output();
     interpreter.set_output(output_stream);
 

@@ -1,9 +1,9 @@
 #ifndef PROJEKAT2526_CONSOLE_OUTPUT_STREAM_H
 #define PROJEKAT2526_CONSOLE_OUTPUT_STREAM_H
 #include <string>
-
 #include "Output_Stream.h"
 
+// Class responsible for writing in command line
 
 class Console_Output_Stream : public Output_Stream{
 public:

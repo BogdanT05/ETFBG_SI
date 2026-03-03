@@ -1,9 +1,10 @@
 #ifndef PROJEKAT2526_PARSER_H
 #define PROJEKAT2526_PARSER_H
-
 #include <memory>
 #include "Command.h"
 #include "Tokenizer.h"
+
+// Class that takes list of tokens and makes matching execution plan depending on structure of command line
 
 class Execution_Plan;
 class Parser {

@@ -7,6 +7,8 @@ enum class Token_type {
     REDIRECT_OUT, REDIRECT_APPEND
 };
 
+// Token represent one segment of input line and depending on its value have different types.
+
 class Token {
 private:
     Token_type type;
