@@ -9,7 +9,7 @@ public:
     [[nodiscard]] virtual std::string message() const = 0;
     [[nodiscard]] virtual int position() const {return -1;}
     [[nodiscard]] virtual int length() const {return 0;}
-    virtual void print(const std::string &line);
+    void print(const std::string &line, std::ostream &os = std::cerr) const;
 
 };
 

@@ -1,17 +1,17 @@
 #include "Error.h"
 
-void Error::print(const std::string &line){
-    std::cerr << line << '\n';
+void Error::print(const std::string &line, std::ostream& os) const {
+    os << line << '\n';
 
     if (position() >=0) {
         for (int i = 0; i < position(); i++)
-            std::cerr << " ";
+            os << " ";
 
         for (int i = 0; i < std::max(1, length()); i++)
-            std::cerr << "^";
+            os << "^";
 
-        std::cerr << '\n';
+        os << '\n';
     }
 
-    std::cerr << "Error: " << message() << "\n";
+    os << "Error: " << message() << "\n";
 }
