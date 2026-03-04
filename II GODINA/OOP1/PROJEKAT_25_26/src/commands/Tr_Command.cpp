@@ -15,9 +15,14 @@ void Tr::execute(Interpreter &interpreter) {
     int pattern_index = -1;
     find_pattern(pattern_index);
 
+    // what is given in format -"what" so the substring is starting from index [2]
+    // the size of substring will be smaller by 3 chars than original string
+    // so we read from index [2] str.size() - 3 characters.
     std::string what = arguments[pattern_index].value.substr(2,
                      arguments[pattern_index].value.size() - 3);
 
+    // pattern_index is either on index 0 or 1
+    // because of that we can decide when to replace and when to delete
     if (pattern_index < arguments.size() - 1) {
         with = arguments[pattern_index+1].value;
         replace = true;
@@ -27,7 +32,7 @@ void Tr::execute(Interpreter &interpreter) {
     std::string result;
     while (source->read_line(line)) {
         std::size_t position = 0;
-        while ((position = line.find(what, position)) != std::string::npos) {
+        while ((position = line.find(what, position)) != std::string::npos) { //std::string::npos is used to indicate invalid or not found position in string
             if (replace) {
                 line.replace(position, what.length(), with);
                 position += with.length();
@@ -38,6 +43,7 @@ void Tr::execute(Interpreter &interpreter) {
         }
         result += line + '\n';
     }
+
     os->write_line(result.substr(0, result.size()-1));
 }
 

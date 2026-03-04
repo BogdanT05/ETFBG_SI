@@ -28,6 +28,8 @@ std::vector<std::unique_ptr<Pipe_Buffer>>Pipe_Line_Plan::create_buffers() const 
 }
 
 void Pipe_Line_Plan::connect_commands(const std::vector<std::unique_ptr<Pipe_Buffer>>& buffers) const {
+    // Input stream of first command is defined on command call
+    // Output stream of last command is defined on command call
     for (std::size_t i = 0; i < commands.size(); i++){
         if (i > 0) {
             auto* in = new Pipe_Input_Stream(buffers[i - 1].get());
@@ -43,6 +45,7 @@ void Pipe_Line_Plan::connect_commands(const std::vector<std::unique_ptr<Pipe_Buf
 
 void Pipe_Line_Plan::execute_commands(Interpreter& interpreter) const {
     for (const auto& command : commands){
+        // If command doesn't have output set in to interpreter default output
         if (!command->get_output())
             command->set_output(interpreter.get_output());
 

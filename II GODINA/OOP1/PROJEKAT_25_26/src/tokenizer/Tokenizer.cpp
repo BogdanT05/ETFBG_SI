@@ -54,7 +54,7 @@ void Tokenizer::pipe(std::vector<Token> &tokens, int &i) {
 void Tokenizer::redirect_append(std::vector<Token> &tokens, int &i) {
     Token token(Token_type::REDIRECT_APPEND, ">>", i);
     tokens.push_back(token);
-    // >> takes 2 spaces so we skip 2 characters'][=[;p-
+    // >> takes 2 spaces so we skip 2 characters
     i+=2;
 }
 
