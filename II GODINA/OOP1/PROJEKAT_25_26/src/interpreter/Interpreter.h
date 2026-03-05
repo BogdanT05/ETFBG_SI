@@ -16,6 +16,7 @@ private:
     Tokenizer &tokenizer;
     Parser &parser;
     std::string prompt;
+    std::string last_command;
     Output_Stream *output;
 
     static bool is_blank(const std::string &string);
@@ -29,6 +30,8 @@ public:
 
     [[nodiscard]] Output_Stream* get_output() const;
     void set_output(Output_Stream* out);
+
+    [[nodiscard]] std::string get_last_command() const {return last_command;}
 };
 
 

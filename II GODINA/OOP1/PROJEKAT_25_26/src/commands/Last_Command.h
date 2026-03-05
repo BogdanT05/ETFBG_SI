@@ -1,0 +1,15 @@
+#ifndef PROJEKAT2526_LAST_COMMAND_H
+#define PROJEKAT2526_LAST_COMMAND_H
+#include "Command.h"
+
+class Last : public Command{
+public:
+    using Command::Command;
+    void execute(Interpreter &interpreter) override;
+    void validate() override;
+
+    void set_input(Input_Stream *is_) override {is = is_;}
+    void set_output(Output_Stream *os_) override {os = os_;}
+};
+
+#endif //PROJEKAT2526_LAST_COMMAND_H

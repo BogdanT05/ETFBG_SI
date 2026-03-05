@@ -28,6 +28,9 @@ void Interpreter::execute_line(const std::string &line) {
         auto tokens = Tokenizer::tokenize(line);
         auto execution_plan = Parser::parse(tokens);
         execution_plan->execute(*this);
+
+        if (tokens[0].get_value() != "last")
+            last_command = line;
     }
     catch (Error &er) {
         print_error(er, line);

@@ -22,6 +22,7 @@
 #include "Unknown_Command_Error.h"
 #include "Wc_Command.h"
 #include "Execution_Plan.h"
+#include "Last_Command.h"
 #include "Time_Command.h"
 
 
@@ -227,6 +228,7 @@ std::unique_ptr<Command> Parser::make_command(const std::string &command,const s
     if (command == "tr") return std::unique_ptr<Command>(new Tr(command, arguments, options));
     if (command == "truncate") return std::unique_ptr<Command>(new Truncate(command, arguments, options));
     if (command == "wc") return std::unique_ptr<Command>(new Wc(command, arguments, options));
+    if (command == "last") return std::unique_ptr<Command>(new Last(command, arguments, options));
 
     return nullptr;
 }

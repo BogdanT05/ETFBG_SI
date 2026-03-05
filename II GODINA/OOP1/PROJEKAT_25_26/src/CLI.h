@@ -30,6 +30,7 @@
 #include "commands/Tr_Command.h"
 #include "commands/Head_Command.h"
 #include "commands/Batch_Command.h"
+#include "commands/Last_Command.h"
 
 // Strimovi
 #include "streams/Input_Stream.h"
