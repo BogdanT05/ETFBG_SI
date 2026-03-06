@@ -63,3 +63,8 @@ pip-wheel-metadata/
 Thumbs.db
 desktop.ini
 
+# -------- Java / IntelliJ --------
+*.iml
+out/
+*.class
+
