@@ -47,6 +47,11 @@ public class Character {
         return name;
     }
 
+    @Override
+    public String toString(){
+        return "Character " + this.name + ":" + this.health;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
