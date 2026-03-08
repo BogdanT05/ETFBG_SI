@@ -1,0 +1,38 @@
+package guns;
+
+import characters.Character;
+
+public class Gun {
+    private int damage;
+    private double precision;
+    private Character owner;
+
+    public Gun(int damage, double precision) {
+        this.damage = damage;
+        this.precision = precision;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public double getPrecision() {
+        return precision;
+    }
+
+    public void setPrecision(double precision) {
+        this.precision = precision;
+    }
+
+    public Character getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Character owner) {
+        this.owner = owner;
+    }
+}
