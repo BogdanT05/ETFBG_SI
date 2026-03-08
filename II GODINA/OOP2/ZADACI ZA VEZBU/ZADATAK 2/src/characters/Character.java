@@ -20,10 +20,7 @@ public class Character {
     }
 
     public void collision(Gun bullet){
-        if(bullet.getOwner() != this){
-            reduce_health(bullet.getDamage());
-        }
-
+        reduce_health(bullet.getDamage());
     }
 
     public void reduce_health(int damage){
