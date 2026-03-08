@@ -2,10 +2,10 @@ package guns;
 
 import characters.Character;
 
-public class Gun {
-    private int damage;
-    private double precision;
-    private Character owner;
+public abstract class Gun {
+    protected int damage;
+    protected double precision;
+    protected Character owner;
 
     public Gun(int damage, double precision) {
         this.damage = damage;
@@ -18,6 +18,8 @@ public class Gun {
             target.collision(this);
         }
     }
+
+    public abstract String type();
 
     public int getDamage() {
         return damage;
