@@ -19,7 +19,6 @@ public abstract class Gun {
         }
     }
 
-    public abstract String type();
 
     public int getDamage() {
         return damage;
