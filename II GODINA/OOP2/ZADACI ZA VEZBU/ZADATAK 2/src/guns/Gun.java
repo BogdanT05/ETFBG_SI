@@ -12,6 +12,13 @@ public class Gun {
         this.precision = precision;
     }
 
+    public void effect(Character target){
+        if(Math.random() < precision){
+            System.out.println("Character: " + owner.getName() + " shoot at: " + target.getName() + " and dealt : " + this.damage + " damage");
+            target.collision(this);
+        }
+    }
+
     public int getDamage() {
         return damage;
     }
