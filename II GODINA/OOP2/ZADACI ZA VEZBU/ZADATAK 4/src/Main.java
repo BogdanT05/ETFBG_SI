@@ -2,6 +2,7 @@ import bank.ATM;
 import bank.Account;
 import bank.Salary;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -29,6 +30,7 @@ public class Main {
 
         System.out.println("Total Deposit: " + totalDeposit);
         System.out.println("Total Withdraw: " + totalWithdraw);
+        System.out.println("Difference between deposit and withdrawal: " + (totalDeposit + totalWithdraw));
         System.out.println("Balance on account:  " + balance);
     }
 }
