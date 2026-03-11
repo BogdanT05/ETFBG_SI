@@ -13,7 +13,9 @@ public class Salary extends Thread{
     public void run() {
         while (!Thread.interrupted()){
             int amount = 1 + new Random().nextInt(100);
-            account.increase(amount);
+            synchronized (account) {
+                account.increase(amount);
+            }
             balance += amount;
             System.out.println("Salary amount: " + amount);
         }
