@@ -7,11 +7,11 @@ public class Account {
         this.balance = balance;
     }
 
-    public void increase(int amount){
+    public synchronized void increase(int amount){
         this.balance += amount;
     }
 
-    public void decrease(int amount){
+    public synchronized void decrease(int amount){
         this.balance -= amount;
     }
 
