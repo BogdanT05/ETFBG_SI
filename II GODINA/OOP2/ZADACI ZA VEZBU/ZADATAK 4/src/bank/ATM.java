@@ -15,6 +15,7 @@ public class ATM extends Thread{
         while (!Thread.interrupted()){
             int amount = 1 + new Random().nextInt(100);
             account.decrease(amount);
+            balance -= amount;
             System.out.println("Withdrawn from ATM: " + amount);
         }
     }
