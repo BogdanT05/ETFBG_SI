@@ -12,14 +12,25 @@ public class ATM extends Thread{
 
     @Override
     public void run() {
-        while (!Thread.interrupted()){
-            int amount = 1 + new Random().nextInt(100);
-            synchronized (account) {
-                account.decrease(amount);
+        try {
+            while (!Thread.interrupted()) {
+                Thread.sleep(1 + new Random().nextInt(1000));
+
+                int amount = 1 + new Random().nextInt(1000);
+                synchronized (account) {
+                    System.out.println("Trying to withdraw: " + amount + "\t Balance: " + account.getBalance());
+
+                    while (amount > account.getBalance()){
+                        account.wait();
+                    }
+
+                    account.decrease(amount);
+                    System.out.println("Withdrawn from ATM: " + amount + "\t New Balance: " + account.getBalance());
+                }
+
+                balance -= amount;
             }
-            balance -= amount;
-            System.out.println("Withdrawn from ATM: " + amount);
-        }
+        } catch (InterruptedException _) {}
     }
 
     public int getBalance(){

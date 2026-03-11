@@ -11,14 +11,22 @@ public class Salary extends Thread{
 
     @Override
     public void run() {
-        while (!Thread.interrupted()){
-            int amount = 1 + new Random().nextInt(100);
-            synchronized (account) {
-                account.increase(amount);
+        try {
+            while (!Thread.interrupted()) {
+                Thread.sleep(1 + new Random().nextInt(1000));
+
+                int amount = 1 + new Random().nextInt(100);
+                synchronized (account) {
+                    account.increase(amount);
+                    System.out.println("Salary amount: " + amount + "\t New Balance: " + account.getBalance());
+
+                    account.notify();
+                }
+
+                balance += amount;
+
             }
-            balance += amount;
-            System.out.println("Salary amount: " + amount);
-        }
+        }catch (InterruptedException _) {}
     }
 
     public int getBalance(){
